@@ -32,6 +32,6 @@ jobs:
           labels: auto-merge
 
       - name: Auto-merge PR
-        uses: pascalgn/automerge-action@v0.15.6
+        uses: pascalgn/automerge-action@v0.16.4
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
