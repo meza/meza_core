@@ -1,7 +1,4 @@
-package gg.meza;
-
-import gg.meza.supporters.SupporterLoader;
-import gg.meza.supporters.TierEntry;
+package gg.meza.supporters;
 
 import net.minecraft.text.Text;
 import org.slf4j.Logger;

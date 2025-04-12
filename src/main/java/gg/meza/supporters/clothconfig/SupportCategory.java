@@ -1,6 +1,6 @@
 package gg.meza.supporters.clothconfig;
 
-import gg.meza.SupportersCore;
+import gg.meza.supporters.SupportersCore;
 import gg.meza.supporters.Supporters;
 import gg.meza.supporters.TierEntry;
 import me.shedaniel.clothconfig2.api.ConfigBuilder;
@@ -14,8 +14,6 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 
 import java.util.List;
-
-import static gg.meza.SupportersCore.MOD_ID;
 
 public class SupportCategory {
     private static void renderSupporters(ConfigCategory supportCategory, ConfigEntryBuilder entryBuilder) {

@@ -22,7 +22,7 @@
   },
   "entrypoints": {
     "client": [
-      "${group}.SupportersCore"
+      "${group}.supporters.SupportersCore"
     ]
   },
   "depends": {
