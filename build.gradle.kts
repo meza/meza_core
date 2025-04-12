@@ -30,7 +30,7 @@ publishing {
     publications {
         create<MavenPublication>("maven") {
             groupId = "gg.meza"
-            artifactId = "supporters-core-${mod.loader}"
+            artifactId = "${mod.id}-${mod.loader}"
             version = "${mod.version}+${stonecutter.current.version}"
             val remapJar = project.tasks.named<RemapJarTask>("remapJar")
             artifact(remapJar.get())
