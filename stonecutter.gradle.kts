@@ -4,3 +4,19 @@ plugins {
 }
 
 stonecutter active "1.21.4-fabric" /* [SC] DO NOT EDIT */
+
+stonecutter.registerChiseled(
+    project.tasks.register("chiseledMavenPublish", stonecutter.chiseled) {
+        group = "modsall"
+        description = "Executes publish for all versions and loaders"
+        ofTask("publish")
+    }
+)
+
+stonecutter.registerChiseled(
+    project.tasks.register("chiseledMavenPublishLocal", stonecutter.chiseled) {
+        group = "modsall"
+        description = "Executes publish for all versions and loaders"
+        ofTask("publishToMavenLocal")
+    }
+)

@@ -1,8 +1,9 @@
 import gg.meza.stonecraft.mod
+import net.fabricmc.loom.task.RemapJarTask
 
 plugins {
     id("gg.meza.stonecraft")
-    id("me.modmuss50.mod-publish-plugin")
+    `maven-publish`
 }
 
 modSettings {
@@ -15,16 +16,30 @@ modSettings {
     }
 }
 
-
-// Example of overriding publishing settings
-publishMods {
-    modrinth {
-        if (mod.isFabric) requires("fabric-api")
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = "gg.meza"
+            artifactId = "supporters-core-${mod.loader}"
+            version = mod.version
+            val remapJar = project.tasks.named<RemapJarTask>("remapJar")
+            artifact(remapJar.get())
+        }
     }
 
-    curseforge {
-        clientRequired = true // Set as needed
-        serverRequired = false // Set as needed
-        if (mod.isFabric) requires("fabric-api")
+    repositories {
+        maven {
+            val isSnapshot = listOf("next", "beta", "alpha", "snapshot").any { it in project.version.toString().lowercase() }
+            url = uri(if (isSnapshot) "https://maven.meza.gg/snapshots" else "https://maven.meza.gg/releases")
+
+            name = "mezaRepo"
+            url = url
+
+            credentials {
+                username = System.getenv("MEZA_MAVEN_USER") ?: ""
+                password = System.getenv("MEZA_MAVEN_PASSWORD") ?: ""
+            }
+        }
     }
 }
+

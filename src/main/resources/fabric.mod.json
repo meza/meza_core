@@ -5,13 +5,24 @@
 
   "name": "${name}",
   "description": "${description}",
-  "authors": [],
+  "authors": [
+    "Meza"
+  ],
   "contact": {},
-
-  "environment": "*",
+  "license": "MIT",
+  "icon": "assets/${id}/icon.png",
+  "environment": "client",
+  "custom": {
+    "modmenu": {
+      "links": {
+        "${id}.discord": "https://discord.gg/dvg3tcQCPW"
+      },
+      "badges": [ "library" ]
+    }
+  },
   "entrypoints": {
     "main": [
-      "${group}.ExampleMod"
+      "${group}.SupportersCore"
     ]
   },
   "depends": {

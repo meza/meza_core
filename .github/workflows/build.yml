@@ -7,9 +7,6 @@ permissions:
   contents: write
   pull-requests: write
 
-env:
-  TYPE: ${{ endsWith(github.ref_name, 'main') && 'release' || (endsWith(github.ref_name, 'beta') && 'beta' || 'dev') }}
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -37,50 +34,28 @@ jobs:
       - name: "🔓 Adjust the release permissions"
         run: chmod a+x ./scripts/release.sh && chmod +x ./gradlew
 
-      - name: "🔎 Determine version"
+      - name: "🧵 Install semantic release"
+        run: npm i --location=global semantic-release semantic-release-discord-notifier conventional-changelog-conventionalcommits @semantic-release/github @semantic-release/changelog @semantic-release/exec semantic-release-export-data semantic-release-discord
+
+      - name: "🔢 Determine version"
+        run: npx semantic-release --dry-run
         id: get-next-version
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-        uses: cycjimmy/semantic-release-action@v4
-        with:
-          dry_run: true
-          extra_plugins: |
-            @semantic-release/changelog
-            @semantic-release/exec
-            conventional-changelog-conventionalcommits 
-            semantic-release-discord-notifier 
 
       - name: "ℹ️ Needs Release?"
         run: echo "Needs release published? ${{ steps.get-next-version.outputs.new_release_published == 'true' }}"
 
-      - name: "🔨 Data Gen"
-        run: |
-          chmod +x ./scripts/datagen.sh
-          ./scripts/datagen.sh
-
-      - name: "🏗️ Build, Test & Release"
-        if: ${{ steps.get-next-version.outputs.new_release_published == 'true' }}
+      - name: "🏗️ Build & Release to GitHub"
+        if: ${{ steps.get-next-version.outputs.new-release-published == 'true' }}
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
-          DO_PUBLISH: steps.get-next-version.outputs.new_release_published
-          MODRINTH_ID: ${{ vars.MODRINTH_ID }}
-          MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
-          CURSEFORGE_ID: ${{ vars.CURSEFORGE_ID }}
-          CURSEFORGE_TOKEN: ${{ secrets.CURSEFORGE_TOKEN }}
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-        uses: cycjimmy/semantic-release-action@v4
-        with:
-          dry_run: true
-          extra_plugins: |
-            @semantic-release/changelog
-            @semantic-release/exec
-            conventional-changelog-conventionalcommits 
-            semantic-release-discord-notifier   
+          DO_PUBLISH: steps.get-next-version.outputs.new-release-published
+        run: npx semantic-release
 
       - name: "🧪 Run Dev Build"
         if: ${{ steps.get-next-version.outputs.new_release_published != 'true' }}
-        run: ./gradlew chiseledGameTest chiseledBuildAndCollect --stacktrace
+        run: ./gradlew chiseledBuildAndCollect --stacktrace
 
       - name: "🕵️‍♂️ Collect jars"
         uses: actions/upload-artifact@v4

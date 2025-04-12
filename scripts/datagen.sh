@@ -1,4 +1,5 @@
-./gradlew chiseledDatagen --stacktrace
+exit 0;
+#./gradlew chiseledDatagen --stacktrace
 
 # You would add resource copying here if you needed it
 

@@ -1,58 +1,67 @@
-# Stonecraft-template
+# Supporters Core
 
-Set up a new multi-loader, multi-version mod project with Stonecraft.
+Supporters Core is a shared mod component that handles loading, refreshing, and formatting supporter data for display in Minecraft mods.
 
-- [ ] Update the gradle.properties file with your mod details
-- [ ] Update the settings.gradle.kts file with the versions you want to support and the mod name on the bottom
-- [ ] Rename the group folders in the src folder to match your mod.group
-- [ ] Rename the `yourmodid.accesswidener` file in `src/main/resources` to match your actual mod.id
-- [ ] Update the .releaserc.json file's discord notification section with your mod details - or remove the section if you don't want it
-- [ ] Check if the java version is what you want it to be in `.github/workflows/build.yml` (`java-version: 21`)
-- [ ] Check if you need the datagen step in the `.github/workflows/build.yml` file. If you don't, remove it.
-- [ ] If you're not running gametests (which you should), then remove all references to `chiseledGameTest` in the `.github/workflows/build.yml` file
-- [ ] Set up the environment variables in GitHub
+This library is designed for reuse across multiple mods. It provides a consistent and configurable way to present supporter tiers and recently joined members in config screens, credits, or anywhere else you want to celebrate your community.
 
+## Features
 
-## Environment Variables
+- Loads supporter data from a remote JSON endpoint
+- Automatically refreshes every 5 minutes
+- Provides rainbow and gold-highlighted name formatting
+- Differentiates tiered supporters from recent joiners
+- Exposes a simple, static API for consumption by other mods
 
-- `GH_TOKEN` **Secret** - Your Personal GitHub token
-- `MODRINTH_ID` **Variable** - Your Modrinth mod ID
-- `MODRINTH_TOKEN` **Secret** - Your Modrinth API token
-- `CURSEFORGE_ID` **Variable** - Your Curseforge mod ID
-- `CURSEFORGE_TOKEN` **Secret** - Your Curseforge API token
-- `DISCORD_WEBHOOK` **Secret** - Your Discord webhook URL to use for notifications. This needs to be a bot token, not a user token.
+## Usage
 
-## GitHub Token How-To
+Add this as a dependency in your mod:
 
-This is only needed if you're planning on releasing to Github, which is the default of this template.
+```kotlin
+repositories {
+    maven { url = uri("https://maven.meza.gg/releases") }
+}
 
-1. Go to your [GitHub settings](https://github.com/settings/tokens)
-2. Click on `Generate new token`
-3. I recommend using a classic token, but make sure to use a new one for each repo. Never reuse tokens to reduce the risk of a token being leaked.
-4. Give the token a name that makes sense to you (usually the repo name)
-5. Select the `repo` scope and whatever else you need. If you're not sure, just select `repo`.
+dependencies {
+    modImplementation("gg.meza:supporters-core-fabric:1.0.0")
+}
+```
 
-## Discord Webhook How-To
+During runtime, access the loaded supporter data via `SupportersCore`:
 
-### Getting a bot token
+```java
+List<TierEntry> tiers = SupportersCore.getTiers();
+String newSupporters = SupportersCore.getNewSupportersText();
+```
 
-1. Go to Discord's developer portal https://discord.com/developers/applications
-2. Create a new application if you don't have one already
-3. Go to the `Bot` section of the application and copy the token and paste it somewhere temporarily (I recommend secure notes in your preferred password manager)
+For styled display, use the raw `Text` versions from the loader:
 
-### Setting up the discord server
+```java
+Text text = SupportersCore.getLoader().getNewSupportersText();
+```
 
-1. Invite the bot to your server where you want it to post notifications
-2. Go to the server settings and create a channel for the bot to post notifications in
-3. Go to your personal discord settings and enable developer mode in the Advanced section
-4. Right-click the channel you want the bot to post in and click `Copy Channel ID`
+## JSON Format
 
-### Setting up the webhook
+Supporter data must be served in the following format:
 
-1. Open up Postman or any other tool you're comfortable with to make a POST request
-2. Set the URL to `https://discord.com/api/v9/channels/{channel_id}/webhooks`
-3. Set the `Authorization` header to `Bot {your_bot_token}`
-4. Set the `Content-Type` header to `application/json`
-5. Set the body to `{"name": "Your Webhook Name"}`
-6. Send the request
-7. Copy the webhook URL from the response and paste it into the `DISCORD_WEBHOOK` environment variable
+```json
+{
+  "tiers": [
+    {
+      "name": "Testers",
+      "emoji": "🧪",
+      "members": [
+        { "name": "meza", "emoji": "🧪" }
+      ]
+    }
+  ],
+  "joined7Days": [
+    { "name": "meza", "emoji": "🧪" }
+  ]
+}
+```
+
+This structure is consumed as-is. The mod assumes names are already filtered, capped, and ordered for display.
+
+## License
+
+MIT

@@ -3,6 +3,8 @@ pluginManagement {
         mavenLocal()
         mavenCentral()
         gradlePluginPortal()
+        maven("https://maven.kikugie.dev/releases")
+        maven("https://maven.kikugie.dev/snapshots")
         maven("https://maven.fabricmc.net/")
         maven("https://maven.architectury.dev")
         maven("https://maven.minecraftforge.net")
@@ -10,8 +12,8 @@ pluginManagement {
     }
 }
 plugins {
-    id("gg.meza.stonecraft") version "1.1.0"
-    id("dev.kikugie.stonecutter") version "0.5.2"
+    id("gg.meza.stonecraft") version "1.2.0"
+    id("dev.kikugie.stonecutter") version "0.6-beta.2"
 }
 
 stonecutter {
@@ -23,11 +25,11 @@ stonecutter {
             for (it in loaders) vers("$version-$it", version)
         }
 
-        mc("1.21.4", "fabric", "forge", "neoforge")
+        mc("1.21.4", "fabric")
 
         vcsVersion = "1.21.4-fabric"
     }
     create(rootProject)
 }
 
-rootProject.name = "YourModName"
+rootProject.name = "supporters-core"
