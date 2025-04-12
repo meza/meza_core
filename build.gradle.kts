@@ -11,8 +11,8 @@ repositories {
 }
 
 dependencies {
-    modApi("me.shedaniel.cloth:cloth-config-fabric:${mod.prop("cloth_version")}") {
-//        exclude(group = "net.fabricmc.fabric-api")
+    modApi("me.shedaniel.cloth:cloth-config-${mod.loader}:${mod.prop("cloth_version")}") {
+        exclude(group = "net.fabricmc.fabric-api")
     }
 }
 

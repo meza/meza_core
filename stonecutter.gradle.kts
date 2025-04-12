@@ -3,7 +3,7 @@ plugins {
     id("gg.meza.stonecraft")
 }
 
-stonecutter active "1.21.4-fabric" /* [SC] DO NOT EDIT */
+stonecutter active "1.21.5-neoforge" /* [SC] DO NOT EDIT */
 
 stonecutter.registerChiseled(
     project.tasks.register("chiseledMavenPublish", stonecutter.chiseled) {
