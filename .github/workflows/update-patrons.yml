@@ -20,14 +20,21 @@ jobs:
       - name: Fetch supporters and update README
         run: node .github/scripts/update-patrons.js
 
-      - name: Create pull request
-        uses: peter-evans/create-pull-request@v7
-        with:
-          token: ${{ secrets.GH_TOKEN }}
-          branch: update/patrons
-          delete-branch: true
-          commit-message: 'docs: updated patrons list"'
-          title: "Update supporters list"
-          body: "This PR updates the supporters list"
-          labels: auto-merge
-
+      - name: Commit changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          PR_TITLE: "Update supporters list"
+          PR_BODY: "This PR updates the supporters list"
+          BRANCH_NAME: "update/patrons"
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+          git checkout -b ${BRANCH_NAME}
+          git add README.md
+          if [[ -n "$(git status --porcelain)" ]]; then
+            git commit -m "docs: updated patrons list"
+            git push origin HEAD
+            gh pr create --title "$PR_TITLE" --body "${PR_BODY}"
+            gh pr merge --auto --delete-branch --squash "$BRANCH_NAME"
+          fi
+          
