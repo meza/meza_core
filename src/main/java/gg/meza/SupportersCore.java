@@ -6,6 +6,8 @@ import net.minecraft.text.Text;
 import org.jetbrains.annotations.ApiStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.net.URI;
 import java.util.List;
 
 /*? if fabric {*/
@@ -31,6 +33,7 @@ public class SupportersCore {
     public static final String MOD_ID = "supporter-core";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
     private static final SupporterLoader LOADER = new SupporterLoader();
+    private static final URI SPONSOR_URL = URI.create("https://ko-fi.com/meza");
 
 
     /*? if fabric {*/
@@ -64,6 +67,11 @@ public class SupportersCore {
     @SuppressWarnings({"unused"}) // exposed for consumer use
     public static List<TierEntry> getTiers() {
         return LOADER.getTiers();
+    }
+
+    @SuppressWarnings({"unused"}) // exposed for consumer use
+    public static URI getSponsorUrl() {
+        return SPONSOR_URL;
     }
 
     @SuppressWarnings({"unused"}) // exposed for consumer use
