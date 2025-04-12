@@ -1,12 +1,12 @@
 {
-  "supporterscore.discord": "Discord",
-  "supporterscore.support" : "Support on Ko-fi",
-  "supporterscore.config.category.support": "Support",
-  "supporterscore.config.support.description1": "Thank you for using this mod \uD83E\uDDE1  \nMaintaining it takes time, coffee, and a bit of magic dust.\n\nIf you'd like to support future updates — or just want your name in lights — consider becoming a sponsor.",
-  "supporterscore.config.support.description2": "Also helps me justify to my lizard doggo plushie why I'm still at the keyboard at 2am.",
-  "supporterscore.config.support.empty": "If you're poking around these settings, you're exactly the sort of person who knows the joy of discovering something crafted with care (and probably why I'm awake way past my bedtime doing it).\n\nRight now, this little modding adventure hasn't found its first supporter yet. No pressure, but it'd be pretty special if it turned out to be you.\nThink of it like planting the first torch in a new world: it’s a small gesture, but it changes everything.",
-  "supporterscore.config.support.newcomers": "A warm welcome to our supporters from the past few days",
-  "supporterscore.config.support.cta": "Click Here to Support!",
-  "supporterscore.config.support.cta.tooltip": "Click the link for the Ko-fi page to see the tiers and perks",
-  "supporterscore.config.support.list": "And a big thank-you to those who’ve stuck around"
+  "supporters_core.discord": "Discord",
+  "supporters_core.support" : "Support on Ko-fi",
+  "supporters_core.config.category.support": "Support",
+  "supporters_core.config.support.description1": "Thank you for using this mod \uD83E\uDDE1  \nMaintaining it takes time, coffee, and a bit of magic dust.\n\nIf you'd like to support future updates — or just want your name in lights — consider becoming a sponsor.",
+  "supporters_core.config.support.description2": "Also helps me justify to my lizard doggo plushie why I'm still at the keyboard at 2am.",
+  "supporters_core.config.support.empty": "If you're poking around these settings, you're exactly the sort of person who knows the joy of discovering something crafted with care (and probably why I'm awake way past my bedtime doing it).\n\nRight now, this little modding adventure hasn't found its first supporter yet. No pressure, but it'd be pretty special if it turned out to be you.\nThink of it like planting the first torch in a new world: it’s a small gesture, but it changes everything.",
+  "supporters_core.config.support.newcomers": "A warm welcome to our supporters from the past few days",
+  "supporters_core.config.support.cta": "Click Here to Support!",
+  "supporters_core.config.support.cta.tooltip": "Click the link for the Ko-fi page to see the tiers and perks",
+  "supporters_core.config.support.list": "And a big thank-you to those who’ve stuck around"
 }

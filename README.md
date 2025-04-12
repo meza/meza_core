@@ -22,7 +22,7 @@ repositories {
 }
 
 dependencies {
-    modImplementation("gg.meza:supporterscore-fabric:1.0.0")
+    modImplementation("gg.meza:supporters_core-fabric:1.0.0")
 }
 ```
 

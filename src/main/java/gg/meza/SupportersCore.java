@@ -33,7 +33,7 @@ public class SupportersCore implements ClientModInitializer {
 public class SupportersCore {
 *//*?}*/
 
-    public static final String MOD_ID = "supporterscore";
+    public static final String MOD_ID = "supporters_core";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
     private static final SupporterLoader LOADER = new SupporterLoader();
     private static final URI SPONSOR_URL = URI.create("https://ko-fi.com/meza");

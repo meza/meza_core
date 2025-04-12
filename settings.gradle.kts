@@ -34,4 +34,4 @@ stonecutter {
     create(rootProject)
 }
 
-rootProject.name = "supporterscore"
+rootProject.name = "supporters_core"
