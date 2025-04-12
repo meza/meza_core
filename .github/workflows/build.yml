@@ -51,6 +51,8 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           DO_PUBLISH: steps.get-next-version.outputs.new-release-published
+          MEZA_MAVEN_USER: ${{ secrets.MEZA_MAVEN_USER }}
+          MEZA_MAVEN_PASSWORD: ${{ secrets.MEZA_MAVEN_PASSWORD }}
         run: npx semantic-release
 
       - name: "🧪 Run Dev Build"
