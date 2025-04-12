@@ -21,7 +21,7 @@
     }
   },
   "entrypoints": {
-    "main": [
+    "client": [
       "${group}.SupportersCore"
     ]
   },

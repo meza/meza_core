@@ -2,8 +2,8 @@ package gg.meza;
 
 import gg.meza.supporters.SupporterLoader;
 import gg.meza.supporters.TierEntry;
+
 import net.minecraft.text.Text;
-import org.jetbrains.annotations.ApiStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,7 +11,9 @@ import java.net.URI;
 import java.util.List;
 
 /*? if fabric {*/
-import net.fabricmc.api.ModInitializer;
+import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 /*?}*/
 
 /*? if neoforge {*/
@@ -23,14 +25,15 @@ import net.neoforged.fml.common.Mod;
 *//*?}*/
 
 /*? if fabric {*/
-public class SupportersCore implements ModInitializer {
+@Environment(EnvType.CLIENT)
+public class SupportersCore implements ClientModInitializer {
 /*?}*/
 /*? if forgeLike {*/
 /*@Mod(SupportersCore.MOD_ID)
 public class SupportersCore {
 *//*?}*/
 
-    public static final String MOD_ID = "supporter-core";
+    public static final String MOD_ID = "supporters-core";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
     private static final SupporterLoader LOADER = new SupporterLoader();
     private static final URI SPONSOR_URL = URI.create("https://ko-fi.com/meza");
@@ -38,7 +41,7 @@ public class SupportersCore {
 
     /*? if fabric {*/
     @Override
-    public void onInitialize() {
+    public void onInitializeClient() {
         LOGGER.info(MOD_ID + " Initializing");
         LOADER.preload();
     }

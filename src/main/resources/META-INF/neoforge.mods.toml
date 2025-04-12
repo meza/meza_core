@@ -1,6 +1,6 @@
 modLoader = "javafml"
 loaderVersion = "*"
-issueTrackerURL = "https://github.com/meza/Stonecraft/issues"
+issueTrackerURL = "https://github.com/meza/supporters-core/issues"
 license = "GPL-3.0"
 
 [[mods]]
@@ -14,7 +14,7 @@ ${description}
 logoFile = "assets/${id}/icon.png"
 logoBlur = false
 
-[[dependencies.${id}]]
+[["dependencies.${id}"]]
 modId = "minecraft"
 mandatory = true
 versionRange = "[${minecraftVersion},)"
