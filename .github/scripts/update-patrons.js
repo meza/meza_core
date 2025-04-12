@@ -23,12 +23,12 @@ async function main() {
         console.error(`Failed to fetch supporter data from ${JSON_URL}:`, err.message);
         process.exit(1);
     }
+    data.tiers.push({ members: [{name: "test"}, {name: "two"}, {name: "three"}, {name: "four"}] });
 
     if (!Array.isArray(data?.tiers) || data.tiers.length === 0) {
         console.error('Supporter data is missing or malformed.');
         process.exit(1);
     }
-    data.tiers.push({ members: [{name: "test"}, {name: "two"}, {name: "three"}, {name: "four"}] });
     const lastTier = data.tiers[data.tiers.length - 1];
     const names = lastTier.members.map(m => m.name).join(' · ');
     const replacement = `${START_MARKER}\n\n${names}\n\n${END_MARKER}`;
