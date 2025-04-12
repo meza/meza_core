@@ -9,24 +9,24 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 
 /*? if fabric {*/
-/*import net.fabricmc.api.ModInitializer;
-*//*?}*/
+import net.fabricmc.api.ModInitializer;
+/*?}*/
 
 /*? if neoforge {*/
-import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+/*import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
-/*?}*/
+*//*?}*/
 
 /*? if fabric {*/
-/*public class SupportersCore implements ModInitializer {
-*//*?}*/
-/*? if forgeLike {*/
-@Mod(SupportersCore.MOD_ID)
-public class SupportersCore {
+public class SupportersCore implements ModInitializer {
 /*?}*/
+/*? if forgeLike {*/
+/*@Mod(SupportersCore.MOD_ID)
+public class SupportersCore {
+*//*?}*/
 
     public static final String MOD_ID = "supporter-core";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
@@ -34,15 +34,15 @@ public class SupportersCore {
 
 
     /*? if fabric {*/
-    /*@Override
+    @Override
     public void onInitialize() {
         LOGGER.info(MOD_ID + " Initializing");
         LOADER.preload();
     }
-    *//*?}*/
+    /*?}*/
 
     /*? if forgeLike {*/
-    public SupportersCore() {
+    /*public SupportersCore() {
         LOGGER.info(MOD_ID + " Initializing");
     }
 
@@ -54,7 +54,7 @@ public class SupportersCore {
             LOADER.preload();
         }
     }
-    /*?}*/
+    *//*?}*/
 
     @SuppressWarnings({"unused"}) // exposed for consumer use
     public static SupporterLoader getLoader() {
