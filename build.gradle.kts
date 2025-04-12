@@ -6,6 +6,16 @@ plugins {
     `maven-publish`
 }
 
+repositories {
+    maven("https://maven.shedaniel.me")
+}
+
+dependencies {
+    modApi("me.shedaniel.cloth:cloth-config-fabric:${mod.prop("cloth_version")}") {
+//        exclude(group = "net.fabricmc.fabric-api")
+    }
+}
+
 modSettings {
     clientOptions {
         fov = 90
@@ -20,7 +30,7 @@ publishing {
     publications {
         create<MavenPublication>("maven") {
             groupId = "gg.meza"
-            artifactId = "supporters-core-${mod.loader}"
+            artifactId = "supporters-core-${stonecutter.current.version}-${mod.loader}"
             version = mod.version
             val remapJar = project.tasks.named<RemapJarTask>("remapJar")
             artifact(remapJar.get())
