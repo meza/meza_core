@@ -1,0 +1,37 @@
+name: Update Supporters List
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: latest
+
+      - name: Fetch supporters and update README
+        run: node .github/scripts/update-patrons.js
+
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+          branch: update/patrons
+          delete-branch: true
+          commit-message: 'docs: updated patrons list"'
+          title: "Update supporters list"
+          body: "This PR updates the supporters list"
+          labels: auto-merge
+
+      - name: Auto-merge PR
+        uses: pascalgn/automerge-action@v0.15.6
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

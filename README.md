@@ -65,3 +65,11 @@ This structure is consumed as-is. The mod assumes names are already filtered, ca
 ## License
 
 MIT
+
+## Credits
+
+Thanks to all the supporters who make this project possible!
+
+<!-- marker:patrons-start -->
+
+<!-- marker:patrons-end -->
