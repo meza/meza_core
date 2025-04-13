@@ -30,7 +30,12 @@ jobs:
         run: |
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
-          git checkout -b ${BRANCH_NAME}
+          if git ls-remote --exit-code --heads "origin/${BRANCH_NAME}" > /dev/null; then
+            git checkout "${BRANCH_NAME}"
+            git pull origin "${BRANCH_NAME}"
+          else
+            git checkout -b "${BRANCH_NAME}"
+          fi
 
       - name: Fetch supporters and update README
         run: node .github/scripts/update-patrons.js
