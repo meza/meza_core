@@ -20,5 +20,5 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Update supporters list
-        uses: meza/action-patrons@v1.0.1
+        uses: meza/action-patrons@v1.0.2
 
