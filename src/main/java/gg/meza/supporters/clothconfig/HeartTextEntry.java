@@ -1,6 +1,6 @@
 package gg.meza.supporters.clothconfig;
 
-/*? if <= 1.21 {*/
+/*? if <= 1.21.1 {*/
 /*import com.mojang.blaze3d.systems.RenderSystem;
 *//*?}*/
 import me.shedaniel.clothconfig2.api.AbstractConfigListEntry;
@@ -78,7 +78,7 @@ public class HeartTextEntry extends AbstractConfigListEntry<Void> {
         drawContext.getMatrices().scale(scale, scale, 1.0f);
         drawContext.getMatrices().translate(-4.5f, -4.5f, 0);
 
-        /*? if > 1.21 {*/
+        /*? if > 1.21.1 {*/
         drawContext.drawTexture(RenderLayer::getGuiTextured, ICONS_TEXTURE, 0, 0, 0, 0, 9, 9, 9, 9);
         /*?} else {*/
         /*RenderSystem.setShaderTexture(0, ICONS_TEXTURE);  // slot 0, your identifier
