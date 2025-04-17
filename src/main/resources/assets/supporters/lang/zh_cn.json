@@ -1,12 +1,12 @@
 {
   "supporters_core.discord": "Discord",
-  "supporters_core.support": "Support on Ko-fi",
-  "supporters_core.config.category.support": "Support",
-  "supporters_core.config.support.description1": "Thank you for using this mod 🧡  \nMaintaining it takes time, coffee, and a bit of magic dust.\n\nIf you'd like to support future updates — or just want your name in lights — consider becoming a sponsor.",
-  "supporters_core.config.support.description2": "Also helps me justify to my lizard doggo plushie why I'm still at the keyboard at 2am.",
-  "supporters_core.config.support.empty": "If you're poking around these settings, you're exactly the sort of person who knows the joy of discovering something crafted with care (and probably why I'm awake way past my bedtime doing it).\n\nRight now, this little modding adventure hasn't found its first supporter yet. No pressure, but it'd be pretty special if it turned out to be you.\nThink of it like planting the first torch in a new world: it’s a small gesture, but it changes everything.",
+  "supporters_core.support": "在 Ko-Fi 上赞助我们",
+  "supporters_core.config.category.support": "赞助我们",
+  "supporters_core.config.support.description1": "感谢您使用此模组 ❤️\n维护它需要花点时间、喝点咖啡，还得来点魔法粉末 🔮\n\n若您愿意支持后续更新 — 或者单纯希望自己的名字出现在醒目位置 — 不妨考虑成为赞助者。",
+  "supporters_core.config.support.description2": "这也能帮我向我的蜥蜴狗勾毛绒玩偶解释为什么凌晨两点还坐在键盘前埋头苦干。",
+  "supporters_core.config.support.empty": "如果你在这些设置中探索，那你一定懂得发现这些精心雕琢之物的快乐（或许这也是我总是在夜深人静该睡觉的时候捣鼓这些的原因）\n\n此时此刻，这个小小的模组探险还没迎来它的首位赞助者。这并不强求，但你若愿意成为他，那将具有非同寻常的意义。\n不妨把它想象成在新世界点燃的第一支火把：虽是举手之劳，但能改变一切。",
   "supporters_core.config.support.newcomers": "A warm welcome to our supporters from the past few days",
-  "supporters_core.config.support.cta": "Click Here to Support!",
+  "supporters_core.config.support.cta": "点击这里提供支持！",
   "supporters_core.config.support.cta.tooltip": "Click the link for the Ko-fi page to see the tiers and perks",
   "supporters_core.config.support.list": "And a big thank-you to those who’ve stuck around"
 }
