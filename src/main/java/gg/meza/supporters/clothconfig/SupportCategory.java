@@ -47,8 +47,19 @@ public class SupportCategory {
     }
 
     public static void add(ConfigBuilder builder, ConfigEntryBuilder entryBuilder) {
-        ConfigCategory supportCategory = builder.getOrCreateCategory(Text.literal("\uD83D\uDC99 ").append(Text.translatable("supporters_core.config.category.support")))
-                .addEntry(entryBuilder.startTextDescription(Text.translatable("supporters_core.config.support.description1").append("\n").append(Text.translatable("supporters_core.config.support.description2"))).build())
+        Text description =Text.translatable("supporters_core.config.support.description1")
+                .append("\n")
+                .append(Text.translatable("supporters_core.config.support.description2"));
+
+        /*? if >=1.21 {*/
+        /*Text category = Text.literal("\uD83D\uDC99 ").append(Text.translatable("supporters_core.config.category.support"));
+        *//*?} else {*/
+        Text category = Text.translatable("supporters_core.config.category.support");
+        /*?}*/
+
+
+        ConfigCategory supportCategory = builder.getOrCreateCategory(category)
+                .addEntry(entryBuilder.startTextDescription(description).build())
 
                 .addEntry(new HeartTextEntry(Text.translatable("supporters_core.config.support.cta")
                         .styled(style -> style
@@ -56,12 +67,12 @@ public class SupportCategory {
                                         .withUnderline(true)
                                         .withBold(true)
                                         /*? if >=1.21.5 {*/
-                                        .withClickEvent(new ClickEvent.OpenUrl(SupportersCore.getSponsorUrl()))
+                                        /*.withClickEvent(new ClickEvent.OpenUrl(SupportersCore.getSponsorUrl()))
                                         .withHoverEvent(new HoverEvent.ShowText(Text.translatable("supporters_core.config.support.cta.tooltip")))
-                                        /*?} else {*/
-                                        /*.withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, SupportersCore.getSponsorUrl().toString()))
+                                        *//*?} else {*/
+                                        .withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, SupportersCore.getSponsorUrl().toString()))
                                         .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.translatable("supporters_core.config.support.cta.tooltip")))
-                                        *//*?}*/
+                                        /*?}*/
                                 )));
         renderSupporters(supportCategory, entryBuilder);
     }
