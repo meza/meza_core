@@ -72,6 +72,6 @@ Thanks to all the supporters who make this project possible!
 
 <!-- marker:patrons-start -->
 
-test · two · three · four
+Yama
 
 <!-- marker:patrons-end -->
