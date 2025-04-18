@@ -11,6 +11,7 @@ permissions:
 
 env:
   BRANCH_NAME: "update/patrons"
+  GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 
 jobs:
   update-readme:
