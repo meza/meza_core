@@ -37,7 +37,7 @@ public class SupportCategory {
             SubCategoryBuilder subCategory = entryBuilder.startSubCategory(title)
                     .setExpanded(true);
 
-            subCategory.add(new SupporterListEntry(Supporters.asRainbowList(tier.members.stream().map(m -> m.name).toList())));
+            subCategory.add(new SupporterListEntry(Supporters.asRainbowList(tier.members.stream().map(m -> Text.of(m.name)).toList())));
             supportCategory.addEntry(subCategory.build());
         }
 

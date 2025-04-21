@@ -50,6 +50,6 @@ public class SupporterLoader {
     }
 
     public Text getNewSupportersText() {
-        return Supporters.asDistinguishedList((supporters.joined7Days.stream().map(m -> m.name + " " + m.emoji).toList()));
+        return Supporters.asDistinguishedList((supporters.joined7Days.stream().map(m -> Text.literal(m.name).append(" ").append(Text.of(m.emoji))).toList()));
     }
 }

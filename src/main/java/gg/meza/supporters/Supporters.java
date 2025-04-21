@@ -13,7 +13,7 @@ public class Supporters {
     public List<Member> joined7Days = List.of();
     private static final String[] DELIMITERS = {" ⋄ ", " · "};
 
-    public static Text asRainbowList(List<String> names) {
+    public static Text asRainbowList(List<Text> names) {
         MutableText finalText = Text.empty();
         float hueStep = 1.0f / Math.max(names.size(), 1);
 
@@ -21,7 +21,7 @@ public class Supporters {
             float hue = i * hueStep;
             int rgb = Color.HSBtoRGB(hue, 0.6f, 1.0f);
 
-            finalText.append(Text.literal(names.get(i))
+            finalText.append(names.get(i).copy()
                     .styled(style -> style.withColor(TextColor.fromRgb(rgb))));
 
             if (i < names.size() - 1) {
@@ -34,12 +34,12 @@ public class Supporters {
         return finalText;
     }
 
-    public static Text asDistinguishedList(List<String> names) {
+    public static Text asDistinguishedList(List<MutableText> names) {
         MutableText finalText = Text.empty();
         String delimiter = " · ";
 
         for (int i = 0; i < names.size(); i++) {
-            finalText.append(Text.literal(names.get(i))
+            finalText.append(names.get(i)
                     .styled(style -> style.withColor(Formatting.GOLD)));
 
             if (i < names.size() - 1) {
