@@ -32,9 +32,9 @@ public class SupportCategory {
             supportCategory.addEntry(entryBuilder.startTextDescription(Text.translatable("supporters_core.config.support.list")).build());
         }
         for (TierEntry tier : tiers) {
-            String title = tier.emoji != null ? tier.emoji + " " + tier.name : tier.name;
+            Text title = tier.emoji != null ? Text.of(tier.emoji).copy().append(Text.literal(" ")).append(Text.of(tier.name)) : Text.of(tier.name);
 
-            SubCategoryBuilder subCategory = entryBuilder.startSubCategory(Text.literal(title))
+            SubCategoryBuilder subCategory = entryBuilder.startSubCategory(title)
                     .setExpanded(true);
 
             subCategory.add(new SupporterListEntry(Supporters.asRainbowList(tier.members.stream().map(m -> m.name).toList())));
@@ -52,7 +52,7 @@ public class SupportCategory {
                 .append(Text.translatable("supporters_core.config.support.description2"));
 
         /*? if >=1.21 {*/
-        Text category = Text.literal("\uD83D\uDC99 ").append(Text.translatable("supporters_core.config.category.support"));
+        Text category = Text.literal("❤ ").append(Text.translatable("supporters_core.config.category.support"));
         /*?} else {*/
         /*Text category = Text.translatable("supporters_core.config.category.support");
         *//*?}*/
