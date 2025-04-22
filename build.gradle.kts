@@ -16,6 +16,8 @@ dependencies {
     }
 }
 
+val mcVersion = mod.prop("minecraft_version_virtual", stonecutter.current.version)
+
 modSettings {
     clientOptions {
         fov = 90
@@ -24,6 +26,10 @@ modSettings {
         darkBackground = true
         musicVolume = 0.0
     }
+
+    variableReplacements = mapOf(
+        "minecraftVersionVirtual" to mcVersion,
+    )
 }
 
 publishing {
