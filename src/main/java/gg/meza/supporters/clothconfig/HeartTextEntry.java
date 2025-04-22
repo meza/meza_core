@@ -3,6 +3,11 @@ package gg.meza.supporters.clothconfig;
 /*? if <= 1.21.1 {*/
 /*import com.mojang.blaze3d.systems.RenderSystem;
 *//*?}*/
+
+/*? if >= 1.21.6 {*/
+/*import com.mojang.blaze3d.pipeline.RenderPipeline;
+*//*?}*/
+
 import me.shedaniel.clothconfig2.api.AbstractConfigListEntry;
 import me.shedaniel.clothconfig2.gui.AbstractConfigScreen;
 import net.minecraft.client.MinecraftClient;
@@ -83,41 +88,65 @@ public class HeartTextEntry extends AbstractConfigListEntry<Void> {
         renderPulsingHeart(drawContext, startX + heartSize + elementSpacing + textWidth + elementSpacing, heartY);
     }
 
-    private void renderPulsingHeart(/*? if >=1.21 {*/DrawContext/*?} else {*//*MatrixStack*//*?}*/ drawContext, int x, int y) {
+    /*? if >= 1.21.6 {*/
+    /*private void renderPulsingHeart(DrawContext drawContext, int x, int y) {
         int speed = 2000;
         double time = System.currentTimeMillis() % speed;
         float scale = (float) (Math.sin(time / speed * 2 * Math.PI) * 0.1 + 1.0f);
-        /*? if >= 1.21 {*/
+
+        drawContext.getMatrices().pushMatrix();
+        drawContext.getMatrices().translate(x + 4.5f, y + 4.5f);
+        drawContext.getMatrices().scale(scale, scale);
+        drawContext.getMatrices().translate(-4.5f, -4.5f);
+
+        drawContext.drawTexture(RenderPipeline.builder().build(), ICONS_TEXTURE, 0, 0, 0, 0, 9, 9, 9, 9);
+        drawContext.getMatrices().popMatrix();
+    }
+    *//*?}*/
+
+    /*? if >= 1.21 && <1.21.6 {*/
+    private void renderPulsingHeart(DrawContext drawContext, int x, int y) {
+        int speed = 2000;
+        double time = System.currentTimeMillis() % speed;
+        float scale = (float) (Math.sin(time / speed * 2 * Math.PI) * 0.1 + 1.0f);
+
         drawContext.getMatrices().push();
         drawContext.getMatrices().translate(x + 4.5f, y + 4.5f, 0);
         drawContext.getMatrices().scale(scale, scale, 1.0f);
         drawContext.getMatrices().translate(-4.5f, -4.5f, 0);
-        /*?} else {*/
-        /*drawContext.push();
-        drawContext.translate(x + 4.5f, y + 4.5f, 0);
-        drawContext.scale(scale, scale, 1.0f);
-        drawContext.translate(-4.5f, -4.5f, 0);
-        *//*?}*/
+
 
         /*? if > 1.21.1 {*/
         drawContext.drawTexture(RenderLayer::getGuiTextured, ICONS_TEXTURE, 0, 0, 0, 0, 9, 9, 9, 9);
-        /*?} else {*/
+        /*?}*/
+
+        /*? if =1.21 {*/
         /*RenderSystem.setShaderTexture(0, ICONS_TEXTURE);  // slot 0, your identifier
-        /^? if >= 1.21 {^/
-        drawContext.drawTexture(ICONS_TEXTURE, 0, 0, 0, 0, 9, 9, 9, 9);
-        /^?} else {^/
-        /^DrawableHelper.drawTexture(drawContext, 0, 0, 0, 0, 9, 9, 9, 9);
-        ^//^?}^/
         *//*?}*/
 
-        /*? if >= 1.21 {*/
+        /*? if <=1.21.1 {*/
+        /*drawContext.drawTexture(ICONS_TEXTURE, 0, 0, 0, 0, 9, 9, 9, 9);
+        *//*?}*/
         drawContext.getMatrices().pop();
-        /*?} else {*/
-        /*drawContext.pop();
-        *//*?}*/
-
-
     }
+    /*?}*/
+
+    /*? if < 1.21 {*/
+    /*private void renderPulsingHeart(MatrixStack drawContext, int x, int y) {
+        int speed = 2000;
+        double time = System.currentTimeMillis() % speed;
+        float scale = (float) (Math.sin(time / speed * 2 * Math.PI) * 0.1 + 1.0f);
+        drawContext.push();
+        drawContext.translate(x + 4.5f, y + 4.5f, 0);
+        drawContext.scale(scale, scale, 1.0f);
+        drawContext.translate(-4.5f, -4.5f, 0);
+        RenderSystem.setShaderTexture(0, ICONS_TEXTURE);  // slot 0, your identifier
+        DrawableHelper.drawTexture(drawContext, 0, 0, 0, 0, 9, 9, 9, 9);
+        drawContext.pop();
+    }
+    *//*?}*/
+
+
 
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
         if (button == 0) {
@@ -183,4 +212,5 @@ public class HeartTextEntry extends AbstractConfigListEntry<Void> {
         return List.of();
     }
 }
+
 
