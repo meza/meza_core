@@ -6,6 +6,7 @@ import net.minecraft.text.Text;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -35,7 +36,7 @@ public class SupporterLoader {
     private void fetchSupporters() {
         String url = "https://vsbmeza3.com/supporters.json";
         try (InputStream input = new java.net.URL(url).openStream();
-             InputStreamReader reader = new InputStreamReader(input)) {
+             InputStreamReader reader = new InputStreamReader(input, StandardCharsets.UTF_8)) {
 
             supporters = GSON.fromJson(reader, Supporters.class);
 
