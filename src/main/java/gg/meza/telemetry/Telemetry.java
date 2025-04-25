@@ -21,7 +21,7 @@ public class Telemetry {
     private final String modVersion;
     private final String sessionId = String.valueOf(System.currentTimeMillis());
 
-    Telemetry(String apiKey, String modVersion, Logger logger) {
+    public Telemetry(String apiKey, String modVersion, Logger logger) {
 
         this.modVersion = modVersion;
         String POSTHOG_HOST = "https://eu.posthog.com";
