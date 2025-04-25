@@ -1,3 +1,4 @@
+import dev.kikugie.stonecutter.build.ReplacementVariants
 import gg.meza.stonecraft.mod
 import net.fabricmc.loom.task.RemapJarTask
 
@@ -10,7 +11,14 @@ repositories {
     maven("https://maven.shedaniel.me")
 }
 
+stonecutter.replacement(true, "CURRENT_VERSION", stonecutter.current.version);
+stonecutter.replacement(true, "CURRENT_LOADER", mod.loader);
+
 dependencies {
+
+    modImplementation(libs.posthog)
+    include(libs.posthog)
+
     modApi("me.shedaniel.cloth:cloth-config-${mod.loader}:${mod.prop("cloth_version")}") {
         exclude(group = "net.fabricmc.fabric-api")
     }

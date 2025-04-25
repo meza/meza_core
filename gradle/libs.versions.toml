@@ -1,0 +1,5 @@
+[versions]
+posthog = "1.2.0"
+
+[libraries]
+posthog = { module = "com.posthog.java:posthog", version.ref = "posthog" }
