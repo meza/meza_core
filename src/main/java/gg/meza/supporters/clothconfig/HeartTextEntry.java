@@ -28,7 +28,7 @@ import net.minecraft.util.Identifier;
 import java.util.List;
 import java.util.Optional;
 
-import static gg.meza.supporters.SupportersCore.MOD_ID;
+import static gg.meza.core.MezaCore.MOD_ID;
 
 public class HeartTextEntry extends AbstractConfigListEntry<Void> {
 

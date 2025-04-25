@@ -38,4 +38,4 @@ stonecutter {
     create(rootProject)
 }
 
-rootProject.name = "supporters_core"
+rootProject.name = "meza_core"
