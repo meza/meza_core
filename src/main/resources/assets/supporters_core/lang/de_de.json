@@ -1,12 +1,12 @@
 {
-  "supporters_core.discord": "Discord",
-  "supporters_core.support": "Auf Ko-Fi unterstützen",
-  "supporters_core.config.category.support": "Unterstützung",
-  "supporters_core.config.support.description1": "Danke dafür, dass Du meine Mod benutzt 🧡  \nDiese zu warten und weiterzuentwickeln kostet Zeit, Kaffe, und ein bisschen Zauberstaub.\n\nWenn Du künftige Updates unterstützen willst - oder einfach nur Deinen Namen im Rampenlicht sehen möchtest - denke darüber nach, ein Sponsor zu werden.",
-  "supporters_core.config.support.description2": "Hilft mir auch, gegenüber meinem Plüsch-Lizard-Doggo zu rechtfertigen, warum ich um 2 Uhr morgens noch an der Tastatur sitze.",
-  "supporters_core.config.support.empty": "Wenn Du in diesen Einstellungen herumstöberst, bist Du genau die Person, die die Freude daran schätzt, etwas, das mit Leidenschaft entwickelt wurde, zu entdecken (und sich vermutlich erklären kann, warum ich noch spät abends daran arbeite).\n\nBislang hat mein kleiner Modding-Ausflug noch keine Unterstützung gefunden. Völlig unverbindlich wäre es toll, wenn sich herausstellt, dass Du als erstes dabei bist.\nEs ist, wie die erste Fackel in einer neuen Welt aufzustellen: eine kleine Geste, aber es ändert alles.",
-  "supporters_core.config.support.newcomers": "Ein Herzliches Willkommen an unsere Unterstützenden der letzten Tage",
-  "supporters_core.config.support.cta": "Klicke hier, um zu unterstützen!",
-  "supporters_core.config.support.cta.tooltip": "Klicke auf den Link für die Ko-Fi-Seite, um die Stufen und Vorteile zu sehen",
-  "supporters_core.config.support.list": "Und ein herzliches Dankeschön an diejenigen, die dabei geblieben sind"
+  "meza_core.discord": "Discord",
+  "meza_core.support": "Auf Ko-Fi unterstützen",
+  "meza_core.config.category.support": "Unterstützung",
+  "meza_core.config.support.description1": "Danke dafür, dass Du meine Mod benutzt 🧡  \nDiese zu warten und weiterzuentwickeln kostet Zeit, Kaffe, und ein bisschen Zauberstaub.\n\nWenn Du künftige Updates unterstützen willst - oder einfach nur Deinen Namen im Rampenlicht sehen möchtest - denke darüber nach, ein Sponsor zu werden.",
+  "meza_core.config.support.description2": "Hilft mir auch, gegenüber meinem Plüsch-Lizard-Doggo zu rechtfertigen, warum ich um 2 Uhr morgens noch an der Tastatur sitze.",
+  "meza_core.config.support.empty": "Wenn Du in diesen Einstellungen herumstöberst, bist Du genau die Person, die die Freude daran schätzt, etwas, das mit Leidenschaft entwickelt wurde, zu entdecken (und sich vermutlich erklären kann, warum ich noch spät abends daran arbeite).\n\nBislang hat mein kleiner Modding-Ausflug noch keine Unterstützung gefunden. Völlig unverbindlich wäre es toll, wenn sich herausstellt, dass Du als erstes dabei bist.\nEs ist, wie die erste Fackel in einer neuen Welt aufzustellen: eine kleine Geste, aber es ändert alles.",
+  "meza_core.config.support.newcomers": "Ein Herzliches Willkommen an unsere Unterstützenden der letzten Tage",
+  "meza_core.config.support.cta": "Klicke hier, um zu unterstützen!",
+  "meza_core.config.support.cta.tooltip": "Klicke auf den Link für die Ko-Fi-Seite, um die Stufen und Vorteile zu sehen",
+  "meza_core.config.support.list": "Und ein herzliches Dankeschön an diejenigen, die dabei geblieben sind"
 }
