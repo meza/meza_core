@@ -1,12 +1,12 @@
 {
   "supporters_core.discord": "Discord",
-  "supporters_core.support": "Support on Ko-fi",
-  "supporters_core.config.category.support": "Support",
-  "supporters_core.config.support.description1": "Thank you for using this mod 🧡  \nMaintaining it takes time, coffee, and a bit of magic dust.\n\nIf you'd like to support future updates — or just want your name in lights — consider becoming a sponsor.",
-  "supporters_core.config.support.description2": "Also helps me justify to my lizard doggo plushie why I'm still at the keyboard at 2am.",
-  "supporters_core.config.support.empty": "If you're poking around these settings, you're exactly the sort of person who knows the joy of discovering something crafted with care (and probably why I'm awake way past my bedtime doing it).\n\nRight now, this little modding adventure hasn't found its first supporter yet. No pressure, but it'd be pretty special if it turned out to be you.\nThink of it like planting the first torch in a new world: it’s a small gesture, but it changes everything.",
-  "supporters_core.config.support.newcomers": "A warm welcome to our supporters from the past few days",
-  "supporters_core.config.support.cta": "Click Here to Support!",
-  "supporters_core.config.support.cta.tooltip": "Click the link for the Ko-fi page to see the tiers and perks",
-  "supporters_core.config.support.list": "And a big thank-you to those who’ve stuck around"
+  "supporters_core.support": "Auf Ko-Fi unterstützen",
+  "supporters_core.config.category.support": "Unterstützung",
+  "supporters_core.config.support.description1": "Danke dafür, dass Du meine Mod benutzt 🧡  \nDiese zu warten und weiterzuentwickeln kostet Zeit, Kaffe, und ein bisschen Zauberstaub.\n\nWenn Du künftige Updates unterstützen willst - oder einfach nur Deinen Namen im Rampenlicht sehen möchtest - denke darüber nach, ein Sponsor zu werden.",
+  "supporters_core.config.support.description2": "Hilft mir auch, gegenüber meinem Plüsch-Lizard-Doggo zu rechtfertigen, warum ich um 2 Uhr morgens noch an der Tastatur sitze.",
+  "supporters_core.config.support.empty": "Wenn Du in diesen Einstellungen herumstöberst, bist Du genau die Person, die die Freude daran schätzt, etwas, das mit Leidenschaft entwickelt wurde, zu entdecken (und sich vermutlich erklären kann, warum ich noch spät abends daran arbeite).\n\nBislang hat mein kleiner Modding-Ausflug noch keine Unterstützung gefunden. Völlig unverbindlich wäre es toll, wenn sich herausstellt, dass Du als erstes dabei bist.\nEs ist, wie die erste Fackel in einer neuen Welt aufzustellen: eine kleine Geste, aber es ändert alles.",
+  "supporters_core.config.support.newcomers": "Ein Herzliches Willkommen an unsere Unterstützenden der letzten Tage",
+  "supporters_core.config.support.cta": "Klicke hier, um zu unterstützen!",
+  "supporters_core.config.support.cta.tooltip": "Klicke auf den Link für die Ko-Fi-Seite, um die Stufen und Vorteile zu sehen",
+  "supporters_core.config.support.list": "Und ein herzliches Dankeschön an diejenigen, die dabei geblieben sind"
 }
