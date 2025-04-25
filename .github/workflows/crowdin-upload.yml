@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - "src/main/resources/assets/inventorysorter/lang/en_us.json"
+      - "src/main/resources/assets/meza_core/lang/en_us.json"
 
 jobs:
   crowdin:
