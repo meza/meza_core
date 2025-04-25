@@ -1,4 +1,3 @@
-import dev.kikugie.stonecutter.build.ReplacementVariants
 import gg.meza.stonecraft.mod
 import net.fabricmc.loom.task.RemapJarTask
 
