@@ -72,6 +72,6 @@ Thanks to all the supporters who make this project possible!
 
 <!-- marker:patrons-start -->
 
-Yama · morgantic
+morgantic
 
 <!-- marker:patrons-end -->
