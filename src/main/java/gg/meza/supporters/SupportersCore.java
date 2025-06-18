@@ -14,8 +14,8 @@ import net.fabricmc.api.Environment;
 /*?}*/
 
 /*? if forgeLike {*/
-import static gg.meza.core.MezaCore.MOD_ID;
-/*?}*/
+/*import static gg.meza.core.MezaCore.MOD_ID;
+*//*?}*/
 
 /*? if neoforge {*/
 /*import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;

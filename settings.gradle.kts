@@ -12,8 +12,8 @@ pluginManagement {
     }
 }
 plugins {
-    id("gg.meza.stonecraft") version "1.3.0"
-    id("dev.kikugie.stonecutter") version "0.6-beta.2"
+    id("gg.meza.stonecraft") version "1.4.1"
+    id("dev.kikugie.stonecutter") version "0.6.2"
 }
 
 stonecutter {
@@ -31,9 +31,9 @@ stonecutter {
         mc("1.21.1", "fabric", "neoforge")
         mc("1.21.4", "fabric", "neoforge")
         mc("1.21.5", "fabric", "neoforge")
-        mc("25w17a", "fabric")
+        mc("1.21.6", "fabric", "neoforge")
 
-        vcsVersion = "1.21.5-fabric"
+        vcsVersion = "1.21.6-fabric"
     }
     create(rootProject)
 }

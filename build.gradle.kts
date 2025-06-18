@@ -6,6 +6,8 @@ plugins {
     `maven-publish`
 }
 
+val mcVersion = mod.prop("minecraft_version_virtual", stonecutter.current.version)
+
 repositories {
     maven("https://maven.shedaniel.me")
 }
@@ -22,8 +24,6 @@ dependencies {
         exclude(group = "net.fabricmc.fabric-api")
     }
 }
-
-val mcVersion = mod.prop("minecraft_version_virtual", stonecutter.current.version)
 
 modSettings {
     clientOptions {
