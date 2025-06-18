@@ -12,10 +12,10 @@ public class Telemetry {
     private final String JAVA_VERSION = System.getProperty("java.version");
 
     // Replaced by Stonecutter for the active Minecraft version
-    private final String MC_VERSION = "CURRENT_VERSION";
+    private final String MC_VERSION = "1.21.6";
 
     // Replaced by Stonecutter for the active mod loader
-    private final String LOADER = "CURRENT_LOADER";
+    private final String LOADER = "neoforge";
 
     private final PostHog posthog;
     private final String modVersion;
