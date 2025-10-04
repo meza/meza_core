@@ -54,7 +54,11 @@ public class SupportersCore {
         LOGGER.debug("Supporters Initializing");
     }
 
-    @EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD ,modid = MOD_ID)
+    /^? if >= 1.21.9 {^/
+    @EventBusSubscriber(modid = MOD_ID)
+    /^?} else {^/
+    /^@EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD ,modid = MOD_ID)
+    ^//^?}^/
     public static class ClientModEvents {
 
         @SubscribeEvent
