@@ -8,5 +8,6 @@
   "meza_core.config.support.newcomers": "热烈欢迎过去几天加入我们的支持者们",
   "meza_core.config.support.cta": "点击这里提供支持！",
   "meza_core.config.support.cta.tooltip": "点击此链接访问 Ko-fi 页面，查看支持等级及相应福利",
-  "meza_core.config.support.list": "衷心感谢始终陪伴我们的每一位朋友"
+  "meza_core.config.support.list": "衷心感谢始终陪伴我们的每一位朋友",
+  "meza_core.reminder": "嘿，你正在使用来自Meza的以下模组：\n%s\n如果你想支持后续的更新，不妨考虑成为赞助者。"
 }
