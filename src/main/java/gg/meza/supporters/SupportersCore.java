@@ -10,19 +10,21 @@ import java.util.List;
 /*? if fabric {*/
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
+import gg.meza.supporters.reminder.FabricReminders;
 import net.fabricmc.api.Environment;
 /*?}*/
 
 /*? if forgeLike {*/
-import static gg.meza.core.MezaCore.MOD_ID;
-/*?}*/
+/*import static gg.meza.core.MezaCore.MOD_ID;
+*//*?}*/
 
 /*? if neoforge {*/
 /*import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
-
+import gg.meza.supporters.reminder.NeoforgeReminders;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.common.NeoForge;
 *//*?}*/
 
 /*? if fabric {*/
@@ -43,6 +45,7 @@ public class SupportersCore {
     public void onInitializeClient() {
         LOGGER.debug("Supporters Initializing");
         LOADER.preload();
+        FabricReminders.initialize();
     }
     /*?}*/
 
@@ -57,6 +60,7 @@ public class SupportersCore {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
             LOADER.preload();
+            NeoForge.EVENT_BUS.register(NeoforgeReminders.class);
         }
     }
     *//*?}*/

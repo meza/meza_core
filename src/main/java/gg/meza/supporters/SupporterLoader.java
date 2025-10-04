@@ -40,7 +40,7 @@ public class SupporterLoader {
 
             supporters = GSON.fromJson(reader, Supporters.class);
 
-        } catch (IOException e) {
+        } catch (Exception e) {
             LOGGER.error("Failed to fetch supporter list: {}", e.getMessage());
             supporters = new Supporters(); // fallback to empty
         }

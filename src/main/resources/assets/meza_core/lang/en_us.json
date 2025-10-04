@@ -8,5 +8,6 @@
   "meza_core.config.support.newcomers": "A warm welcome to our supporters from the past few days",
   "meza_core.config.support.cta": "Click Here to Support!",
   "meza_core.config.support.cta.tooltip": "Click the link for the Ko-fi page to see the tiers and perks",
-  "meza_core.config.support.list": "And a big thank-you to those who’ve stuck around"
+  "meza_core.config.support.list": "And a big thank-you to those who’ve stuck around",
+  "meza_core.reminder": "Hey, you’re using the following mods from Meza: \n%s\nIf you'd like to support future updates consider becoming a sponsor."
 }
