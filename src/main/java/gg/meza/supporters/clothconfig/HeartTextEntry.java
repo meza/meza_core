@@ -13,6 +13,9 @@ import me.shedaniel.clothconfig2.gui.AbstractConfigScreen;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 /*? if >= 1.21 {*/
+/*? if >= 1.21.9 {*/
+import net.minecraft.client.gui.Click;
+/*?}*/
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.render.RenderLayer;
 /*?} else {*/
@@ -143,9 +146,12 @@ public class HeartTextEntry extends AbstractConfigListEntry<Void> {
     }
     *//*?}*/
 
-
-    public boolean mouseClicked(double mouseX, double mouseY, int button) {
-        if (button == 0) {
+    /*? if >= 1.21.9 {*/
+    public boolean mouseClicked(Click event, boolean doubleClick) {
+    /*?} else {*/
+    /*public boolean mouseClicked(double mouseX, double mouseY, int button) {
+    *//*?}*/
+        if (/*? if >= 1.21.9 {*/event.button()/*?} else {*//*button*//*?}*/ == 0) {
             TextRenderer textRenderer = MinecraftClient.getInstance().textRenderer;
 
             int heartSize = 9;
@@ -170,8 +176,10 @@ public class HeartTextEntry extends AbstractConfigListEntry<Void> {
             int boundsW = textWidth;
             int boundsH = height;
 
-            if (mouseX >= boundsX && mouseX <= boundsX + boundsW &&
-                    mouseY >= boundsY && mouseY <= boundsY + boundsH) {
+            if (/*? if >= 1.21.9 {*/event.x()/*?} else {*//*mouseX*//*?}*/ >= boundsX &&
+                /*? if >= 1.21.9 {*/event.x()/*?} else {*//*mouseX*//*?}*/ <= boundsX + boundsW &&
+                /*? if >= 1.21.9 {*/event.y()/*?} else {*//*mouseY*//*?}*/ >= boundsY &&
+                /*? if >= 1.21.9 {*/event.y()/*?} else {*//*mouseY*//*?}*/ <= boundsY + boundsH) {
 
                 Style style = message.getStyle();
                 AbstractConfigScreen configScreen = this.getConfigScreen();
@@ -180,8 +188,11 @@ public class HeartTextEntry extends AbstractConfigListEntry<Void> {
                 }
             }
         }
-
-        return super.mouseClicked(mouseX, mouseY, button);
+        /*? if >= 1.21.9 {*/
+        return super.mouseClicked(event, doubleClick);
+        /*?} else {*/
+        /*return super.mouseClicked(mouseX, mouseY, button);
+        *//*?}*/
     }
 
     @Override
