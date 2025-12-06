@@ -12,17 +12,15 @@ pluginManagement {
     }
 }
 plugins {
-    id("gg.meza.stonecraft") version "1.7.0"
-    id("dev.kikugie.stonecutter") version "0.6.2"
+    id("gg.meza.stonecraft") version "1.8.+"
+    id("dev.kikugie.stonecutter") version "0.7.+"
 }
 
 stonecutter {
-    centralScript = "build.gradle.kts"
-    kotlinController = true
     shared {
         fun mc(version: String, vararg loaders: String) {
             // Make the relevant version directories named "1.20.2-fabric", "1.20.2-forge", etc.
-            for (it in loaders) vers("$version-$it", version)
+            for (it in loaders) version("$version-$it", version)
         }
 
         mc("1.19.2", "fabric")
@@ -34,7 +32,7 @@ stonecutter {
         mc("1.21.6", "fabric", "neoforge")
         mc("1.21.9", "fabric", "neoforge")
 
-        vcsVersion = "1.21.6-fabric"
+        vcsVersion = "1.21.9-fabric"
     }
     create(rootProject)
 }
