@@ -3,6 +3,28 @@
   "extends": ["github>stateshifters/renovate-common"],
   "packageRules": [
     {
+      "matchDepTypes": [
+        "dependencies"
+      ],
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
+      "automerge": true,
+      "semanticCommitType": "deps"
+    },
+    {
+      "matchDepTypes": [
+        "dependencies"
+      ],
+      "matchUpdateTypes": [
+        "major"
+      ],
+      "automerge": false,
+      "semanticCommitType": "deps",
+      "prPriority": 6
+    },
+    {
       "matchPackageNames": [
         "gg.meza.stonecraft"
       ],
