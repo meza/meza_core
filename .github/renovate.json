@@ -1,58 +1,12 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["github>stateshifters/renovate-common"],
+  "extends": ["github>stateshifters/renovate-common:deps"],
   "packageRules": [
-    {
-      "matchDepTypes": [
-        "dependencies"
-      ],
-      "matchUpdateTypes": [
-        "minor",
-        "patch"
-      ],
-      "automerge": true,
-      "semanticCommitType": "deps"
-    },
-    {
-      "matchDepTypes": [
-        "dependencies"
-      ],
-      "matchUpdateTypes": [
-        "major"
-      ],
-      "automerge": false,
-      "semanticCommitType": "deps",
-      "prPriority": 6
-    },
     {
       "matchPackageNames": [
         "gg.meza.stonecraft"
       ],
       "stabilityDays": 0
-    },
-    {
-      "matchManagers": ["gradle"],
-      "semanticCommitType": "deps",
-      "automerge": true
-    },
-    {
-      "matchDatasources": [ "gradle-version" ],
-      "addLabels": ["dev dependencies"],
-      "automerge": true,
-      "semanticCommitType": "deps",
-      "matchUpdateTypes": [
-        "minor",
-        "patch"
-      ]
-    },
-    {
-      "matchDatasources": [ "gradle-version" ],
-      "addLabels": ["dev dependencies"],
-      "automerge": false,
-      "semanticCommitType": "deps",
-      "matchUpdateTypes": [
-        "major"
-      ]
     }
   ]
 }
