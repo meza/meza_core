@@ -30,7 +30,7 @@ jobs:
         lc: [{lc: de, name: German}, {lc: zh-CN, name: Chinese}]
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
           ref: 'dev'
