@@ -3,6 +3,7 @@ pluginManagement {
         mavenLocal()
         mavenCentral()
         gradlePluginPortal()
+        maven("https://maven.meza.gg/snapshots")
         maven("https://maven.kikugie.dev/releases")
         maven("https://maven.kikugie.dev/snapshots")
         maven("https://maven.fabricmc.net/")
@@ -12,8 +13,8 @@ pluginManagement {
     }
 }
 plugins {
-    id("gg.meza.stonecraft") version "1.8.7"
-    id("dev.kikugie.stonecutter") version "0.7.11"
+    id("gg.meza.stonecraft") version "1.9.0-SNAPSHOT.7"
+    id("dev.kikugie.stonecutter") version "0.8-beta.1"
 }
 
 stonecutter {
@@ -33,8 +34,9 @@ stonecutter {
         mc("1.21.5", "fabric", "neoforge")
         mc("1.21.6", "fabric", "neoforge")
         mc("1.21.9", "fabric", "neoforge")
+        mc("1.21.11", "fabric", "neoforge")
 
-        vcsVersion = "1.21.9-fabric"
+        vcsVersion = "1.21.11-fabric"
     }
     create(rootProject)
 }

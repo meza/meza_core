@@ -183,7 +183,12 @@ public class HeartTextEntry extends AbstractConfigListEntry<Void> {
 
                 Style style = message.getStyle();
                 AbstractConfigScreen configScreen = this.getConfigScreen();
-                if (configScreen != null && configScreen.handleTextClick(style)) {
+                //? <= 1.21.10
+                /*if (configScreen != null && configScreen.handleTextClick(style)) {*/
+                //? > 1.21.10 && fabric
+                if (configScreen != null && configScreen.method_25430(style)) {
+                //? > 1.21.10 && neoforge
+                //if (configScreen != null && configScreen.handleComponentClicked(style)) {
                     return true;
                 }
             }

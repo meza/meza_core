@@ -6,14 +6,16 @@ plugins {
     `maven-publish`
 }
 
-val mcVersion = mod.prop("minecraft_version_virtual", stonecutter.current.version)
+val mcVersion = mod.prop("minecraft_version", stonecutter.current.version)
 
 repositories {
     maven("https://maven.shedaniel.me")
 }
 
-stonecutter.replacement(true, "CURRENT_VERSION", stonecutter.current.version);
-stonecutter.replacement(true, "CURRENT_LOADER", mod.loader);
+stonecutter {
+    swaps["version"] = "private final String MC_VERSION = \"${mcVersion}\";"
+    swaps["loader"] = "private final String LOADER = \"${mod.loader}\";"
+}
 
 dependencies {
 

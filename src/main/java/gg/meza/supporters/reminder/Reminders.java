@@ -60,8 +60,8 @@ public class Reminders {
 /*?} else {*/
                         /*.withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, SupportersCore.getSponsorUrl().toString()))
                         .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.translatable("meza_core.config.support.cta.tooltip")))
-                       */
-/*?}*/
+                       
+*//*?}*/
                 );
 
         return Text.translatable("meza_core.reminder", String.join(", ", mezaMods)).append("\n").append(msg2);
