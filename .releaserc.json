@@ -11,13 +11,13 @@
     [
       "@semantic-release/commit-analyzer",
       {
-        "preset": "@meza/mezas-conventional-changelog"
+        "config": "@meza/mezas-conventional-changelog"
       }
     ],
     [
       "@semantic-release/release-notes-generator",
       {
-        "preset": "@meza/mezas-conventional-changelog"
+        "config": "@meza/mezas-conventional-changelog"
       }
     ],
     "semantic-release-export-data",
