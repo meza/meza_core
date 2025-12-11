@@ -28,6 +28,7 @@
   "depends": {
     "fabricloader": "*",
     "fabric-api": "*",
-    "minecraft": ">=${minecraftVersionVirtual}"
+    "minecraft": ">=${minecraftVersionVirtual}",
+    "cloth-config": ">=${clothVersion}"
   }
 }

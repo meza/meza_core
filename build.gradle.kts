@@ -38,6 +38,7 @@ modSettings {
 
     variableReplacements = mapOf(
         "minecraftVersionVirtual" to mcVersion,
+        "clothVersion" to mod.prop("cloth_version", "*")
     )
 }
 
