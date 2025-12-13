@@ -185,8 +185,10 @@ public class HeartTextEntry extends AbstractConfigListEntry<Void> {
                 AbstractConfigScreen configScreen = this.getConfigScreen();
                 //? <= 1.21.10
                 /*if (configScreen != null && configScreen.handleTextClick(style)) {*/
-                //? > 1.21.10 && fabric
-                if (configScreen != null && configScreen.method_25430(style)) {
+                /*? > 1.21.10 && fabric { */
+                if (configScreen != null) {
+                    AbstractConfigScreen.handleClickEvent(style.getClickEvent(), MinecraftClient.getInstance(), MinecraftClient.getInstance().currentScreen);
+                /*? } */
                 //? > 1.21.10 && neoforge
                 //if (configScreen != null && configScreen.handleComponentClicked(style)) {
                     return true;

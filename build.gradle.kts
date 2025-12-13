@@ -7,14 +7,32 @@ plugins {
 }
 
 val mcVersion = mod.prop("minecraft_version", stonecutter.current.version)
+val isTesting = mod.prop("testing", "0") != "0"
 
 repositories {
     maven("https://maven.shedaniel.me")
+    exclusiveContent {
+        forRepository {
+            maven("https://api.modrinth.com/maven")
+        }
+        filter {
+            includeGroup("maven.modrinth")
+        }
+    }
 }
 
 stonecutter {
+    constants["isTesting"] = isTesting
     swaps["version"] = "private final String MC_VERSION = \"${mcVersion}\";"
     swaps["loader"] = "private final String LOADER = \"${mod.loader}\";"
+    swaps["testing"] = when {
+        isTesting -> "\"\${group}.supporters.SupportersTestMod\""
+        else -> "\"\${group}.supporters.SupportersCore\""
+    }
+}
+
+if (isTesting) {
+    sourceSets["main"].java.srcDir("src/testmod/java")
 }
 
 dependencies {
@@ -25,6 +43,11 @@ dependencies {
     modApi("me.shedaniel.cloth:cloth-config-${mod.loader}:${mod.prop("cloth_version")}") {
         exclude(group = "net.fabricmc.fabric-api")
     }
+
+    if (isTesting && mod.isFabric) {
+        modApi("maven.modrinth:modmenu:17.0.0-alpha.1")
+    }
+
 }
 
 modSettings {
@@ -38,7 +61,15 @@ modSettings {
 
     variableReplacements = mapOf(
         "minecraftVersionVirtual" to mcVersion,
-        "clothVersion" to mod.prop("cloth_version", "*")
+        "clothVersion" to mod.prop("cloth_version", "*"),
+        "entrypoint" to when {
+            isTesting -> "${mod.group}.supporters.SupportersTestMod"
+            else -> "${mod.group}.supporters.SupportersCore"
+        },
+        "modmenuEntryPoint" to when {
+            isTesting && mod.isFabric -> "[\"${mod.group}.supporters.supporters.ModMenuIntegration\"]"
+            else -> "[]"
+        }
     )
 }
 

@@ -22,8 +22,9 @@
   },
   "entrypoints": {
     "client": [
-      "${group}.supporters.SupportersCore"
-    ]
+      "${entrypoint}"
+    ],
+    "modmenu": ${modmenuEntryPoint}
   },
   "depends": {
     "fabricloader": "*",
