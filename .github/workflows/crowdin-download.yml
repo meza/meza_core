@@ -9,7 +9,7 @@ permissions:
 on:
   push:
     branches:
-      - dev
+      - main
     paths:
       - "src/main/resources/assets/meza_core/lang/en_us.json"
   schedule:
@@ -33,7 +33,7 @@ jobs:
         uses: actions/checkout@v6
         with:
           fetch-depth: 0
-          ref: 'dev'
+          ref: 'main'
 
       - name: Synchronize with Crowdin
         uses: crowdin/github-action@v2
@@ -47,7 +47,7 @@ jobs:
           skip_untranslated_strings: true
           commit_message: 'fix(l10n): additional ${{matrix.lc.name}} translations'
           pull_request_title: 'fix(l10n): additional ${{matrix.lc.name}} translations'
-          pull_request_base_branch_name: 'dev'
+          pull_request_base_branch_name: 'main'
           download_language: ${{matrix.lc.lc}}
 
 
