@@ -67,7 +67,7 @@ jobs:
         run: ./gradlew buildAndCollect --stacktrace
 
       - name: "🕵️‍♂️ Collect jars"
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: Artifacts
           path: |
