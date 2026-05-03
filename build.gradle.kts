@@ -33,7 +33,12 @@ stonecutter {
 }
 
 if (isTesting) {
-    sourceSets["main"].java.srcDir("src/testmod/java")
+    if (mod.isFabric) {
+        sourceSets["main"].java.srcDir("src/testmod-fabric/java")
+    }
+    if (mod.isNeoforge) {
+        sourceSets["main"].java.srcDir("src/testmod-neoforge/java")
+    }
 }
 
 dependencies {

@@ -1,7 +1,7 @@
 /*? if neoforge {*/
 /*package gg.meza.supporters.reminder;
 
-import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.Minecraft;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.Mod;
@@ -40,9 +40,9 @@ public class NeoforgeReminders {
 
         if (meza.isEmpty()) return;
 
-        EXEC.schedule(() -> MinecraftClient.getInstance().execute(() -> {
-            if (MinecraftClient.getInstance().player != null) {
-                MinecraftClient.getInstance().player.sendMessage(Reminders.reminder(meza.stream().toList()), false);
+        EXEC.schedule(() -> Minecraft.getInstance().execute(() -> {
+            if (Minecraft.getInstance().player != null) {
+                Minecraft.getInstance().player.sendSystemMessage(Reminders.reminder(meza.stream().toList()));
                 writeDate(stampFile, LocalDate.now());
             }
         }), 30, TimeUnit.SECONDS);
