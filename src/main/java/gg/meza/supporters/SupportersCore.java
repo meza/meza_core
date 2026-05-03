@@ -2,7 +2,7 @@ package gg.meza.supporters;
 
 import static gg.meza.core.MezaCore.LOGGER;
 
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 
 import java.net.URI;
 import java.util.List;
@@ -90,7 +90,7 @@ public class SupportersCore {
     }
 
     @SuppressWarnings({"unused"}) // exposed for consumer use
-    public static Text getNewSupportersText() {
+    public static Component getNewSupportersText() {
         return LOADER.getNewSupportersText();
     }
 }

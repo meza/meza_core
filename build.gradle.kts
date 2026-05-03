@@ -8,6 +8,7 @@ plugins {
 
 val mcVersion = mod.prop("minecraft_version", stonecutter.current.version)
 val isTesting = mod.prop("testing", "0") != "0"
+val isDeobfuscated = stonecutter.current.parsed >= "21.6"
 
 repositories {
     maven("https://maven.shedaniel.me")
@@ -37,15 +38,15 @@ if (isTesting) {
 
 dependencies {
 
-    modImplementation(libs.posthog)
+    implementation(libs.posthog)
     include(libs.posthog)
 
-    modApi("me.shedaniel.cloth:cloth-config-${mod.loader}:${mod.prop("cloth_version")}") {
+    api("me.shedaniel.cloth:cloth-config-${mod.loader}:${mod.prop("cloth_version")}") {
         exclude(group = "net.fabricmc.fabric-api")
     }
 
     if (isTesting && mod.isFabric) {
-        modApi("maven.modrinth:modmenu:17.0.0-alpha.1")
+        api("maven.modrinth:modmenu:18.0.0-alpha.8")
     }
 
 }
@@ -62,12 +63,13 @@ modSettings {
     variableReplacements = mapOf(
         "minecraftVersionVirtual" to mcVersion,
         "clothVersion" to mod.prop("cloth_version", "*"),
-        "entrypoint" to when {
-            isTesting -> "${mod.group}.supporters.SupportersTestMod"
-            else -> "${mod.group}.supporters.SupportersCore"
+        "entrypoint" to "${mod.group}.supporters.SupportersCore",
+        "awFile" to when {
+            isDeobfuscated -> "supporters_core.accesswidener"
+            else -> "supporters_core.old.accesswidener"
         },
         "modmenuEntryPoint" to when {
-            isTesting && mod.isFabric -> "[\"${mod.group}.supporters.supporters.ModMenuIntegration\"]"
+            isTesting && mod.isFabric -> "[\"${mod.group}.supporters.ModMenuIntegration\"]"
             else -> "[]"
         }
     )
@@ -79,8 +81,12 @@ publishing {
             groupId = "gg.meza"
             artifactId = "${mod.id}-${mod.loader}"
             version = "${mod.version}+${stonecutter.current.version}"
-            val remapJar = project.tasks.named<RemapJarTask>("remapJar")
-            artifact(remapJar.get())
+            if (isDeobfuscated) {
+                artifact(tasks.named("jar"))
+            } else {
+                val remapJar = project.tasks.named<RemapJarTask>("remapJar")
+                artifact(remapJar.get())
+            }
         }
     }
 
@@ -99,4 +105,3 @@ publishing {
         }
     }
 }
-

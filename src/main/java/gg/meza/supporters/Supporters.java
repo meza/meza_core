@@ -1,9 +1,9 @@
 package gg.meza.supporters;
 
-import net.minecraft.text.MutableText;
-import net.minecraft.text.Text;
-import net.minecraft.text.TextColor;
-import net.minecraft.util.Formatting;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.TextColor;
 
 import java.awt.*;
 import java.util.List;
@@ -13,8 +13,8 @@ public class Supporters {
     public List<Member> joined7Days = List.of();
     private static final String[] DELIMITERS = {" ⋄ ", " · "};
 
-    public static Text asRainbowList(List<Text> names) {
-        MutableText finalText = Text.empty();
+    public static Component asRainbowList(List<MutableComponent> names) {
+        MutableComponent finalText = Component.empty();
         float hueStep = 1.0f / Math.max(names.size(), 1);
 
         for (int i = 0; i < names.size(); i++) {
@@ -22,29 +22,29 @@ public class Supporters {
             int rgb = Color.HSBtoRGB(hue, 0.6f, 1.0f);
 
             finalText.append(names.get(i).copy()
-                    .styled(style -> style.withColor(TextColor.fromRgb(rgb))));
+                    .withStyle(style -> style.withColor(TextColor.fromRgb(rgb))));
 
             if (i < names.size() - 1) {
                 String delimiter = DELIMITERS[i % DELIMITERS.length];
-                finalText.append(Text.literal(delimiter)
-                        .styled(style -> style.withColor(Formatting.GRAY)));
+                finalText.append(Component.literal(delimiter)
+                        .withStyle(style -> style.withColor(ChatFormatting.GRAY)));
             }
         }
 
         return finalText;
     }
 
-    public static Text asDistinguishedList(List<MutableText> names) {
-        MutableText finalText = Text.empty();
+    public static Component asDistinguishedList(List<MutableComponent> names) {
+        MutableComponent finalText = Component.empty();
         String delimiter = " · ";
 
         for (int i = 0; i < names.size(); i++) {
             finalText.append(names.get(i)
-                    .styled(style -> style.withColor(Formatting.GOLD)));
+                    .withStyle(style -> style.withColor(ChatFormatting.GOLD)));
 
             if (i < names.size() - 1) {
-                finalText.append(Text.literal(delimiter)
-                        .styled(style -> style.withColor(Formatting.GRAY)));
+                finalText.append(Component.literal(delimiter)
+                        .withStyle(style -> style.withColor(ChatFormatting.GRAY)));
             }
         }
 

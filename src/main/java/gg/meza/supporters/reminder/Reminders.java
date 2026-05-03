@@ -1,10 +1,10 @@
 package gg.meza.supporters.reminder;
 
 import gg.meza.supporters.SupportersCore;
-import net.minecraft.text.ClickEvent;
-import net.minecraft.text.HoverEvent;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.ClickEvent;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.HoverEvent;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -48,22 +48,17 @@ public class Reminders {
         } catch (IOException ignored) {}
     }
 
-    public static Text reminder(List<String> mezaMods)  {
-        Text msg2 = Text.translatable("meza_core.config.support.cta")
-                .styled(style -> style
-                        .withColor(Formatting.AQUA)
-                        .withUnderline(true)
+    public static Component reminder(List<String> mezaMods)  {
+        Component msg2 = Component.translatable("meza_core.config.support.cta")
+                .withStyle(style -> style
+                        .withColor(ChatFormatting.AQUA)
+                        .withUnderlined(true)
                         .withBold(false)
-/*? if >=1.21.5 {*/
                         .withClickEvent(new ClickEvent.OpenUrl(SupportersCore.getSponsorUrl()))
-                        .withHoverEvent(new HoverEvent.ShowText(Text.translatable("meza_core.config.support.cta.tooltip")))
-/*?} else {*/
-                        /*.withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, SupportersCore.getSponsorUrl().toString()))
-                        .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.translatable("meza_core.config.support.cta.tooltip")))
-                       
-*//*?}*/
+                        .withHoverEvent(new HoverEvent.ShowText(Component.translatable("meza_core.config.support.cta.tooltip")))
+
                 );
 
-        return Text.translatable("meza_core.reminder", String.join(", ", mezaMods)).append("\n").append(msg2);
+        return Component.translatable("meza_core.reminder", String.join(", ", mezaMods)).append("\n").append(msg2);
     }
 }

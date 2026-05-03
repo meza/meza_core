@@ -12,6 +12,7 @@
   "license": "MIT",
   "icon": "assets/${id}/icon.png",
   "environment": "client",
+  "accessWidener": "${awFile}",
   "custom": {
     "modmenu": {
       "links": {

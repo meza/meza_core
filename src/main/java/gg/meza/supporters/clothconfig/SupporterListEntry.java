@@ -1,13 +1,13 @@
 package gg.meza.supporters.clothconfig;
 
 import me.shedaniel.clothconfig2.gui.entries.TextListEntry;
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 
 import java.util.UUID;
 
 public class SupporterListEntry extends TextListEntry {
-    public SupporterListEntry(Text text) {
-        super(Text.literal(UUID.randomUUID().toString()), text);
+    public SupporterListEntry(Component text) {
+        super(Component.literal(UUID.randomUUID().toString()), text);
     }
 
     @Override

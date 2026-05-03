@@ -1,32 +1,18 @@
 package gg.meza.supporters.clothconfig;
 
-/*? if <= 1.21.1 {*/
-/*import com.mojang.blaze3d.systems.RenderSystem;
- *//*?}*/
-
-/*? if >= 1.21.6 {*/
-import net.minecraft.client.gl.RenderPipelines;
-/*?}*/
-
 import me.shedaniel.clothconfig2.api.AbstractConfigListEntry;
 import me.shedaniel.clothconfig2.gui.AbstractConfigScreen;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.font.TextRenderer;
-/*? if >= 1.21 {*/
-/*? if >= 1.21.9 {*/
-import net.minecraft.client.gui.Click;
-/*?}*/
-import net.minecraft.client.gui.DrawContext;
-import net.minecraft.client.render.RenderLayer;
-/*?} else {*/
-/*import net.minecraft.client.gui.DrawableHelper;
-import net.minecraft.client.util.math.MatrixStack;
-*//*?}*/
-import net.minecraft.client.gui.Element;
-import net.minecraft.client.gui.Selectable;
-import net.minecraft.text.Style;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
+import net.minecraft.client.gui.components.events.GuiEventListener;
+import net.minecraft.client.gui.narration.NarratableEntry;
+import net.minecraft.client.input.MouseButtonEvent;
+import net.minecraft.client.renderer.RenderPipelines;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.HoverEvent;
+import net.minecraft.network.chat.Style;
+import net.minecraft.resources.Identifier;
 
 import java.util.List;
 import java.util.Optional;
@@ -35,31 +21,24 @@ import static gg.meza.core.MezaCore.MOD_ID;
 
 public class HeartTextEntry extends AbstractConfigListEntry<Void> {
 
-    /*? if >= 1.21 {*/
-    private static final Identifier ICONS_TEXTURE = Identifier.of(MOD_ID, "textures/heart.png");
-    /*?} else {*/
-    /*private static final Identifier ICONS_TEXTURE = new Identifier(MOD_ID, "textures/heart.png");
-     *//*?}*/
+    private static final Identifier ICONS_TEXTURE = Identifier.fromNamespaceAndPath(MOD_ID, "textures/heart.png");
 
-    private final Text message;
+    private final Component message;
     private int lastRenderY;
 
-    public HeartTextEntry(Text message) {
+    public HeartTextEntry(Component message) {
         super(message, false);
         this.message = message;
     }
 
     @Override
-    /*? if >= 1.21*/
-    public void render(DrawContext drawContext, int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean isHovered, float delta) {
-        /*? if < 1.21*/
-        /*public void render(MatrixStack drawContext, int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean isHovered, float delta) {*/
-        super.render(drawContext, index, y, x, entryWidth, entryHeight, mouseX, mouseY, isHovered, delta);
+    public void extractRenderState(GuiGraphicsExtractor drawContext, int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean isHovered, float delta) {
+        super.extractRenderState(drawContext, index, y, x, entryWidth, entryHeight, mouseX, mouseY, isHovered, delta);
         lastRenderY = y;
-        TextRenderer textRenderer = MinecraftClient.getInstance().textRenderer;
+        Font textRenderer = Minecraft.getInstance().font;
         int heartSize = 9;
         int elementSpacing = 4;
-        int textWidth = textRenderer.getWidth(message);
+        int textWidth = textRenderer.width(message);
 
         int totalWidth = heartSize + elementSpacing + textWidth + elementSpacing + heartSize;
         int centerX = x + (entryWidth / 2);
@@ -73,102 +52,50 @@ public class HeartTextEntry extends AbstractConfigListEntry<Void> {
         renderPulsingHeart(drawContext, startX, heartY);
 
         // Text
-        /*? if >= 1.21 {*/
-        drawContext.drawTextWithShadow(textRenderer, message, startX + heartSize + elementSpacing, textY, 0xFFFFFFFF);
-        /*?} else {*/
-        /*textRenderer.drawWithShadow(drawContext, message, startX + heartSize + elementSpacing, textY, 0xFFFFFF);
-        *//*?}*/
+        drawContext.text(textRenderer, message, startX + heartSize + elementSpacing, textY, 0xFFFFFFFF);
 
         if (mouseX >= startX && mouseX <= startX + totalWidth &&
                 mouseY >= y && mouseY <= y + entryHeight) {
-            /*? if >= 1.21 {*/
-            drawContext.drawHoverEvent(textRenderer, message.getStyle(), mouseX, mouseY);
-            /*?}*/
+            if (message.getStyle().getHoverEvent() instanceof HoverEvent.ShowText hoverEvent) {
+                drawContext.setTooltipForNextFrame(textRenderer, hoverEvent.value(), mouseX, mouseY);
+            }
         }
 
         // Right heart
         renderPulsingHeart(drawContext, startX + heartSize + elementSpacing + textWidth + elementSpacing, heartY);
     }
 
-    /*? if >= 1.21.6 {*/
-    private void renderPulsingHeart(DrawContext drawContext, int x, int y) {
+    private void renderPulsingHeart(GuiGraphicsExtractor drawContext, int x, int y) {
         int speed = 2000;
         double time = System.currentTimeMillis() % speed;
         float scale = (float) (Math.sin(time / speed * 2 * Math.PI) * 0.1 + 1.0f);
-        drawContext.getMatrices().pushMatrix();
-        drawContext.getMatrices().translate(x + 4.5f, y + 4.5f);
-        drawContext.getMatrices().scale(scale, scale);
-        drawContext.getMatrices().translate(-4.5f, -4.5f);
-        drawContext.drawTexture(RenderPipelines.GUI_TEXTURED_PREMULTIPLIED_ALPHA, ICONS_TEXTURE, 0, 0, 0, 0, 9, 9, 9, 9);
-        drawContext.getMatrices().popMatrix();
+        drawContext.pose().pushMatrix();
+        drawContext.pose().translate(x + 4.5f, y + 4.5f);
+        drawContext.pose().scale(scale, scale);
+        drawContext.pose().translate(-4.5f, -4.5f);
+        drawContext.blit(RenderPipelines.GUI_TEXTURED_PREMULTIPLIED_ALPHA, ICONS_TEXTURE, 0, 0, 0, 0, 9, 9, 9, 9);
+        drawContext.pose().popMatrix();
     }
-    /*?}*/
 
-    /*? if >= 1.21 && <1.21.6 {*/
-    /*private void renderPulsingHeart(DrawContext drawContext, int x, int y) {
-        int speed = 2000;
-        double time = System.currentTimeMillis() % speed;
-        float scale = (float) (Math.sin(time / speed * 2 * Math.PI) * 0.1 + 1.0f);
-
-        drawContext.getMatrices().push();
-        drawContext.getMatrices().translate(x + 4.5f, y + 4.5f, 0);
-        drawContext.getMatrices().scale(scale, scale, 1.0f);
-        drawContext.getMatrices().translate(-4.5f, -4.5f, 0);
-
-
-        /^? if > 1.21.1 {^/
-        drawContext.drawTexture(RenderLayer::getGuiTextured, ICONS_TEXTURE, 0, 0, 0, 0, 9, 9, 9, 9);
-        /^?}^/
-
-        /^? if =1.21 {^/
-        /^RenderSystem.setShaderTexture(0, ICONS_TEXTURE);  // slot 0, your identifier
-        ^//^?}^/
-
-        /^? if <=1.21.1 {^/
-        /^drawContext.drawTexture(ICONS_TEXTURE, 0, 0, 0, 0, 9, 9, 9, 9);
-        ^//^?}^/
-        drawContext.getMatrices().pop();
-    }
-    *//*?}*/
-
-    /*? if < 1.21 {*/
-    /*private void renderPulsingHeart(MatrixStack drawContext, int x, int y) {
-        int speed = 2000;
-        double time = System.currentTimeMillis() % speed;
-        float scale = (float) (Math.sin(time / speed * 2 * Math.PI) * 0.1 + 1.0f);
-        drawContext.push();
-        drawContext.translate(x + 4.5f, y + 4.5f, 0);
-        drawContext.scale(scale, scale, 1.0f);
-        drawContext.translate(-4.5f, -4.5f, 0);
-        RenderSystem.setShaderTexture(0, ICONS_TEXTURE);  // slot 0, your identifier
-        DrawableHelper.drawTexture(drawContext, 0, 0, 0, 0, 9, 9, 9, 9);
-        drawContext.pop();
-    }
-    *//*?}*/
-
-    /*? if >= 1.21.9 {*/
-    public boolean mouseClicked(Click event, boolean doubleClick) {
-    /*?} else {*/
-    /*public boolean mouseClicked(double mouseX, double mouseY, int button) {
-    *//*?}*/
-        if (/*? if >= 1.21.9 {*/event.button()/*?} else {*//*button*//*?}*/ == 0) {
-            TextRenderer textRenderer = MinecraftClient.getInstance().textRenderer;
+    public boolean mouseClicked(MouseButtonEvent event, boolean doubleClick) {
+        if (event.button() == 0) {
+            Font textRenderer = Minecraft.getInstance().font;
 
             int heartSize = 9;
             int spacing = 4;
-            int textWidth = textRenderer.getWidth(message);
+            int textWidth = textRenderer.width(message);
             int totalWidth = heartSize + spacing + textWidth + spacing + heartSize;
 
             int screenWidth = 0;
-            if (MinecraftClient.getInstance().currentScreen != null) {
-                screenWidth = MinecraftClient.getInstance().currentScreen.width;
+            if (Minecraft.getInstance().screen != null) {
+                screenWidth = Minecraft.getInstance().screen.width;
             }
             int centerX = screenWidth / 2;
             int startX = centerX - (totalWidth / 2);
             int textX = startX + heartSize + spacing;
 
             int textY = this.lastRenderY + 6;
-            int height = textRenderer.fontHeight;
+            int height = textRenderer.lineHeight;
 
             // Bounding box of the whole [heart][text][heart] line
             int boundsX = textX;
@@ -176,30 +103,24 @@ public class HeartTextEntry extends AbstractConfigListEntry<Void> {
             int boundsW = textWidth;
             int boundsH = height;
 
-            if (/*? if >= 1.21.9 {*/event.x()/*?} else {*//*mouseX*//*?}*/ >= boundsX &&
-                /*? if >= 1.21.9 {*/event.x()/*?} else {*//*mouseX*//*?}*/ <= boundsX + boundsW &&
-                /*? if >= 1.21.9 {*/event.y()/*?} else {*//*mouseY*//*?}*/ >= boundsY &&
-                /*? if >= 1.21.9 {*/event.y()/*?} else {*//*mouseY*//*?}*/ <= boundsY + boundsH) {
+            if (event.x() >= boundsX &&
+                    event.x() <= boundsX + boundsW &&
+                    event.y() >= boundsY &&
+                    event.y() <= boundsY + boundsH) {
 
                 Style style = message.getStyle();
                 AbstractConfigScreen configScreen = this.getConfigScreen();
                 if (configScreen != null) {
-                    /*? if >= 1.21.11 {*/
+
                     if (style.getClickEvent() != null) {
-                        AbstractConfigScreen.handleClickEvent(style.getClickEvent(), MinecraftClient.getInstance(), MinecraftClient.getInstance().currentScreen);
+                        AbstractConfigScreen.handleClickEvent(style.getClickEvent(), Minecraft.getInstance(), Minecraft.getInstance().screen);
                     }
-                    /*?} else {*/
-                    /*configScreen.handleTextClick(style);*/
-                    /*?}*/
+
                     return true;
                 }
             }
         }
-        /*? if >= 1.21.9 {*/
         return super.mouseClicked(event, doubleClick);
-        /*?} else {*/
-        /*return super.mouseClicked(mouseX, mouseY, button);
-        *//*?}*/
     }
 
     @Override
@@ -217,14 +138,13 @@ public class HeartTextEntry extends AbstractConfigListEntry<Void> {
     }
 
     @Override
-    public List<? extends Selectable> narratables() {
+    public List<? extends NarratableEntry> narratables() {
         return List.of();
     }
 
     @Override
-    public List<? extends Element> children() {
+    public List<? extends GuiEventListener> children() {
         return List.of();
     }
 }
-
 

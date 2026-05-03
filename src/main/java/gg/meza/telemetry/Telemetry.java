@@ -12,7 +12,7 @@ public class Telemetry {
     private final String JAVA_VERSION = System.getProperty("java.version");
 
     //$ version
-    private final String MC_VERSION = "1.21.11";
+    private final String MC_VERSION = "26.1";
 
     //$ loader
     private final String LOADER = "fabric";

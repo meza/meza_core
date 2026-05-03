@@ -8,7 +8,7 @@ import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.ModContainer;
 import net.fabricmc.loader.api.ObjectShare;
 import net.fabricmc.loader.api.metadata.ModMetadata;
-import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.Minecraft;
 
 import java.nio.file.Path;
 import java.time.LocalDate;
@@ -29,9 +29,9 @@ public class FabricReminders {
             LocalDate last = readDate(stampFile);
             if (last != null && last.isAfter(LocalDate.now().minusDays(30))) return;
 
-            EXEC.schedule(() -> MinecraftClient.getInstance().execute(() -> {
-                if (MinecraftClient.getInstance().player != null) {
-                    MinecraftClient.getInstance().player.sendMessage(Reminders.reminder(findMezaMods()), false);
+            EXEC.schedule(() -> Minecraft.getInstance().execute(() -> {
+                if (Minecraft.getInstance().player != null) {
+                    Minecraft.getInstance().player.sendSystemMessage(Reminders.reminder(findMezaMods()));
                     writeDate(stampFile, LocalDate.now());
                 }
             }), 30, TimeUnit.SECONDS);
