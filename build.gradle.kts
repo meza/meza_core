@@ -6,7 +6,7 @@ plugins {
     `maven-publish`
 }
 
-val mcVersion = mod.prop("minecraft_version", stonecutter.current.version)
+val mcVersion = mod.prop("minecraft_version_virtual", stonecutter.current.version)
 val isTesting = mod.prop("testing", "0") != "0"
 val isDeobfuscated = stonecutter.current.parsed >= "21.6"
 

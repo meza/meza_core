@@ -17,6 +17,6 @@ logoBlur = false
 [[dependencies.${id}]]
 modId = "minecraft"
 mandatory = true
-versionRange = "[${minecraftVersion},)"
+versionRange = "[${minecraftVersionVirtual},)"
 ordering = "NONE"
 side = "BOTH"
