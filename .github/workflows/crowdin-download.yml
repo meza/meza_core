@@ -30,13 +30,13 @@ jobs:
         lc: [{lc: de, name: German}, {lc: zh-CN, name: Chinese}]
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v6.0.3
         with:
           fetch-depth: 0
           ref: 'main'
 
       - name: Synchronize with Crowdin
-        uses: crowdin/github-action@v2
+        uses: crowdin/github-action@v2.16.2
         with:
           upload_sources: false
           upload_translations: false
