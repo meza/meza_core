@@ -22,7 +22,7 @@ jobs:
         uses: actions/checkout@v6.0.3
 
       - name: "☕ Setup Jdk 25"
-        uses: actions/setup-java@v5.2.0
+        uses: actions/setup-java@v5.3.0
         with:
           cache: 'gradle'
           cache-dependency-path: |
