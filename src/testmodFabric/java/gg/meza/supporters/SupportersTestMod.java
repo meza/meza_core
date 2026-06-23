@@ -7,7 +7,6 @@ import net.minecraft.client.KeyMapping;
 import net.minecraft.resources.Identifier;
 import org.lwjgl.glfw.GLFW;
 
-
 public class SupportersTestMod implements ClientModInitializer {
 
     private static final KeyMapping.Category category = KeyMapping.Category.register(Identifier.fromNamespaceAndPath("supporters_test", "keybinds"));
@@ -23,6 +22,10 @@ public class SupportersTestMod implements ClientModInitializer {
     public void onInitializeClient() {
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             while (openConfig.consumeClick()) {
+                //? if >= 26.2
+                //client.gui.setScreen(ConfigScreen.getConfigScreen(null));
+
+                //? if < 26.2
                 client.setScreen(ConfigScreen.getConfigScreen(null));
             }
         });

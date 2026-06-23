@@ -87,8 +87,8 @@ public class HeartTextEntry extends AbstractConfigListEntry<Void> {
             int totalWidth = heartSize + spacing + textWidth + spacing + heartSize;
 
             int screenWidth = 0;
-            if (Minecraft.getInstance().screen != null) {
-                screenWidth = Minecraft.getInstance().screen.width;
+            if (Minecraft.getInstance().gui.screen() != null) {
+                screenWidth = Minecraft.getInstance().gui.screen().width;
             }
             int centerX = screenWidth / 2;
             int startX = centerX - (totalWidth / 2);
@@ -113,7 +113,7 @@ public class HeartTextEntry extends AbstractConfigListEntry<Void> {
                 if (configScreen != null) {
 
                     if (style.getClickEvent() != null) {
-                        AbstractConfigScreen.handleClickEvent(style.getClickEvent(), Minecraft.getInstance(), Minecraft.getInstance().screen);
+                        AbstractConfigScreen.handleClickEvent(style.getClickEvent(), Minecraft.getInstance(), Minecraft.getInstance().gui.screen());
                     }
 
                     return true;

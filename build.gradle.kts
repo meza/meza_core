@@ -8,7 +8,6 @@ plugins {
 
 val mcVersion = mod.prop("minecraft_version_virtual", stonecutter.current.version)
 val isTesting = mod.prop("testing", "0") != "0"
-val isDeobfuscated = stonecutter.current.parsed >= "21.6"
 
 repositories {
     maven("https://maven.shedaniel.me")
@@ -30,14 +29,17 @@ stonecutter {
         isTesting -> "\"\${group}.supporters.SupportersTestMod\""
         else -> "\"\${group}.supporters.SupportersCore\""
     }
+    replacements.string(stonecutter.current.parsed >= "26.2") {
+        replace("Minecraft.getInstance().screen", "Minecraft.getInstance().gui.screen()")
+    }
 }
 
 if (isTesting) {
     if (mod.isFabric) {
-        sourceSets["main"].java.srcDir("src/testmod-fabric/java")
+        sourceSets["main"].java.srcDir("src/testmodFabric/java")
     }
     if (mod.isNeoforge) {
-        sourceSets["main"].java.srcDir("src/testmod-neoforge/java")
+        sourceSets["main"].java.srcDir("src/testmodNeoforge/java")
     }
 }
 
@@ -51,7 +53,7 @@ dependencies {
     }
 
     if (isTesting && mod.isFabric) {
-        api("maven.modrinth:modmenu:18.0.0-alpha.8")
+        api("maven.modrinth:modmenu:${mod.prop("modmenu_version")}")
     }
 
 }
@@ -63,16 +65,16 @@ modSettings {
         narrator = false
         darkBackground = true
         musicVolume = 0.0
+        accessWidenerLocation = project.rootProject.layout.projectDirectory
+            .file(
+                "src/main/resources/supporters_core.accesswidener",
+            )
     }
 
     variableReplacements = mapOf(
         "minecraftVersionVirtual" to mcVersion,
         "clothVersion" to mod.prop("cloth_version", "*"),
         "entrypoint" to "${mod.group}.supporters.SupportersCore",
-        "awFile" to when {
-            isDeobfuscated -> "supporters_core.accesswidener"
-            else -> "supporters_core.old.accesswidener"
-        },
         "modmenuEntryPoint" to when {
             isTesting && mod.isFabric -> "[\"${mod.group}.supporters.ModMenuIntegration\"]"
             else -> "[]"
@@ -86,18 +88,15 @@ publishing {
             groupId = "gg.meza"
             artifactId = "${mod.id}-${mod.loader}"
             version = "${mod.version}+${stonecutter.current.version}"
-            if (isDeobfuscated) {
-                artifact(tasks.named("jar"))
-            } else {
-                val remapJar = project.tasks.named<RemapJarTask>("remapJar")
-                artifact(remapJar.get())
-            }
+            artifact(tasks.named("jar"))
+
         }
     }
 
     repositories {
         maven {
-            val isSnapshot = listOf("next", "beta", "alpha", "snapshot").any { it in project.version.toString().lowercase() }
+            val isSnapshot =
+                listOf("next", "beta", "alpha", "snapshot").any { it in project.version.toString().lowercase() }
             url = uri(if (isSnapshot) "https://maven.meza.gg/snapshots" else "https://maven.meza.gg/releases")
 
             name = "mezaRepo"
