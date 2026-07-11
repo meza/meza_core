@@ -48,7 +48,7 @@ jobs:
         run: npx semantic-release --dry-run
         id: get-next-version
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_TOKEN: ${{ github.token }}
 
       - name: "ℹ️ Needs Release?"
         run: echo "Needs release published? ${{ steps.get-next-version.outputs.new_release_published == 'true' }}"
@@ -56,7 +56,7 @@ jobs:
       - name: "🏗️ Build & Release to GitHub"
         if: ${{ steps.get-next-version.outputs.new-release-published == 'true' }}
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_TOKEN: ${{ github.token }}
           DO_PUBLISH: steps.get-next-version.outputs.new-release-published
           MEZA_MAVEN_USER: ${{ secrets.MEZA_MAVEN_USER }}
           MEZA_MAVEN_PASSWORD: ${{ secrets.MEZA_MAVEN_PASSWORD }}
