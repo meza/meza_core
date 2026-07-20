@@ -6,7 +6,7 @@
       "matchPackageNames": [
         "gg.meza.stonecraft"
       ],
-      "stabilityDays": 0
+      "minimumReleaseAge": null
     }
   ]
 }
