@@ -22,7 +22,7 @@ concurrency:
 
 jobs:
   crowdin:
-    runs-on: meza-ubuntu-slim
+    runs-on: meza-ubuntu-latest
     strategy:
       fail-fast: false
       max-parallel: 1
