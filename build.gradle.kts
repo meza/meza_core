@@ -78,7 +78,12 @@ modSettings {
         "modmenuEntryPoint" to when {
             isTesting && mod.isFabric -> "[\"${mod.group}.supporters.ModMenuIntegration\"]"
             else -> "[]"
-        }
+        },
+        "neoforgeLogo" to
+            when (stonecutter.current.parsed < "26.3") {
+                true -> "logoFile"
+                false -> "iconFile"
+            },
     )
 }
 
